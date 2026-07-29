@@ -1,0 +1,100 @@
+import type { Project } from "@/types";
+
+export const projects: Project[] = [
+  {
+    id: "greggs-kiosk",
+    title: "Greggs Kiosk",
+    description:
+      "Customer-facing self-service kiosk running on Linux across Greggs stores. I joined as one of the first developers, shaped the early prototype, and led development of reusable order-sharing, loyalty and  promotions packages which are now adopted by POS and drive-through teams.",
+    techStack: [
+      "Flutter",
+      "Dart",
+      ".NET",
+      "Docker",
+      "Azure DevOps",
+      "Linux",
+      "Wiremock",
+    ],
+    imageUrl: "/projects/greggs-kiosk.jpg",
+    featured: true,
+    category: "linux",
+  },
+  {
+    id: "greggs-website",
+    title: "Greggs Website",
+    description:
+      "Full-stack development on greggs.co.uk ranging from Click & Collect, gift cards, account management, checkout and CMS-driven contents. I also led the implementation of secure mobile number change in .NET, Zendesk integration, and accessibility improvements raising the score from 72% to 82%.",
+    techStack: [
+      "Vue.js",
+      "Nuxt",
+      "TypeScript",
+      ".NET",
+      "Tailwind",
+      "Storyblok",
+      "Cypress",
+    ],
+    liveUrl: "https://www.greggs.co.uk/",
+    imageUrl: "/projects/greggs-website.png",
+    featured: true,
+    category: "web",
+  },
+  {
+    id: "activate-erp",
+    title: "Activate ERP",
+    description:
+      "Mobile-first ERP system for retail and distribution ranging from goods receiving, stocktaking, inventory, picking, and transfers. I architected and built the frontend layer from scratch with a single codebase targeting both App Store and Google Play which has features such as biometric auth, camera for photo upload, geolocation as a verification, and secure storage.",
+    techStack: [
+      "Vue.js",
+      "Quasar",
+      "Cordova",
+      "Capacitor",
+      "SCSS",
+      "Vuex",
+      "Axios",
+    ],
+    liveUrl: "https://apps.apple.com/sg/app/activate-erp/id1601575070",
+    imageUrl: "/projects/activate-erp.png",
+    featured: true,
+    category: "mobile",
+  },
+  {
+    id: "katie-jayne",
+    title: "Katie Jayne",
+    description:
+      "Production-quality e-commerce storefront for a premium glassware brand. I built it with React, Next.js, and TypeScript which has features such as product catalogues, cart, checkout, Redux state management, Mailchimp integration, and Playwright end-to-end tests.",
+    techStack: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind",
+      "Redux",
+      "Playwright",
+    ],
+    liveUrl: "https://katie-jayne.vercel.app/",
+    imageUrl: "/projects/katie-jayne.png",
+    featured: true,
+    category: "web",
+  },
+  {
+    id: "iphone-clone",
+    title: "iPhone Clone",
+    description:
+      "Interactive clone of Apple's iPhone product page, built to master 3D rendering and scroll-driven animation. It has real-time device rotation with Three.js, fluid reveals with GSAP, and storytelling-led UI architecture.",
+    techStack: ["React", "Next.js", "TypeScript", "Three.js", "GSAP"],
+    liveUrl: "https://apple16-clone.vercel.app/",
+    imageUrl: "/projects/iphone-clone.png",
+    featured: true,
+    category: "web",
+  },
+  {
+    id: "beauty-spa",
+    title: "Beauty & Spa Landing Page",
+    description:
+      "Marketing landing page for a Singapore-based beauty clinic. I built it with clean HTML, CSS and javascript which features Mobile-first development, with jQuery-powered sliders, smooth scroll, and consultation journey.",
+    techStack: ["JavaScript", "HTML", "CSS", "jQuery"],
+    liveUrl: "https://aha-beauty-products.netlify.app/",
+    imageUrl: "/projects/beauty-spa.png",
+    featured: true,
+    category: "web",
+  },
+];
