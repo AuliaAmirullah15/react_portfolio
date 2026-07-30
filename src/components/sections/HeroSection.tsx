@@ -42,40 +42,52 @@ export default function HeroSection() {
     >
       {/* Subtle dot-grid background */}
       <div
-        className="absolute inset-0 opacity-[0.025]"
+        className="absolute inset-0 opacity-[0.04]"
         style={{
           backgroundImage:
-            "radial-gradient(circle, #0f172a 1px, transparent 1px)",
+            "radial-gradient(circle, #12100E 1px, transparent 1px)",
           backgroundSize: "28px 28px",
         }}
         aria-hidden="true"
       />
 
-      {/* ── Geometric rings — upper right (Art Deco / MCM) ── */}
+      {/* ── Geometric rings — upper right (Art Deco / MCM) ──
+          One hue, varied weight and opacity. The pastel-per-ring version read
+          as a colour test card; concentric brass reads as inlay. */}
       <div
-        className="absolute -top-24 -right-24 w-140 h-140 rounded-full border border-slate-200/80 pointer-events-none"
+        className="absolute -top-24 -right-24 w-140 h-140 rounded-full border border-ink-300/40 pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="absolute -top-10 -right-10 w-100 h-100 rounded-full border border-blue-200/60 pointer-events-none"
+        className="absolute -top-10 -right-10 w-100 h-100 rounded-full border border-brass-500/25 pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="absolute top-12 right-12 w-60 h-60 rounded-full border-2 border-violet-200/50 pointer-events-none"
+        className="absolute top-12 right-12 w-60 h-60 rounded-full border-2 border-brass-500/40 pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="absolute top-24 right-24 w-30 h-30 rounded-full border border-amber-300/60 pointer-events-none"
+        className="absolute top-24 right-24 w-30 h-30 rounded-full border border-brass-600/55 pointer-events-none"
         aria-hidden="true"
       />
 
       {/* ── Geometric rings — lower left ── */}
       <div
-        className="absolute -bottom-20 -left-20 w-90 h-90 rounded-full border border-teal-200/50 pointer-events-none"
+        className="absolute -bottom-20 -left-20 w-90 h-90 rounded-full border border-ink-300/35 pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="absolute -bottom-6 -left-6 w-55 h-55 rounded-full border border-violet-200/40 pointer-events-none"
+        className="absolute -bottom-6 -left-6 w-55 h-55 rounded-full border border-brass-500/30 pointer-events-none"
+        aria-hidden="true"
+      />
+
+      {/* ── Stepped chevron bands — Deco corner fill, pure CSS gradient ── */}
+      <div
+        className="deco-band absolute top-0 left-0 w-40 h-40 text-ink-400/30 pointer-events-none"
+        aria-hidden="true"
+      />
+      <div
+        className="deco-band absolute bottom-0 right-0 w-40 h-40 text-brass-500/25 pointer-events-none"
         aria-hidden="true"
       />
 
@@ -86,11 +98,11 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45 }}
-            className="inline-flex items-center gap-2 mb-8 px-4 py-1.5 rounded-full bg-green-50 border border-green-200 text-green-700 text-sm font-medium"
+            className="inline-flex items-center gap-2.5 mb-8 px-4 py-1.5 bg-verdigris-100 border border-verdigris-400/50 text-verdigris-700 text-[0.6875rem] font-bold uppercase tracking-[0.18em]"
             role="status"
           >
             <span
-              className="w-2 h-2 rounded-full bg-green-500 animate-pulse"
+              className="w-1.5 h-1.5 rotate-45 bg-verdigris-600"
               aria-hidden="true"
             />
             Open to opportunities
@@ -102,15 +114,18 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-6"
+          className="font-display text-5xl sm:text-6xl lg:text-7xl text-ink-900 mb-6"
         >
-          Hi, I&apos;m{" "}
+          <span className="block text-base font-sans font-bold uppercase tracking-[0.3em] text-ink-500 mb-4">
+            Hi, I&apos;m
+          </span>
           <span className="relative inline-block">
-            <span className="relative z-10 bg-linear-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+            <span className="relative z-10 text-ink-950">
               {SITE_CONFIG.name}
             </span>
+            {/* Brass underlay — a struck rule rather than a gradient wash. */}
             <span
-              className="absolute bottom-1.5 left-0 w-full h-3 bg-linear-to-r from-blue-100 to-violet-100 -z-10 rounded"
+              className="absolute bottom-1.5 left-0 w-full h-2.5 bg-brass-300/60 -z-10"
               aria-hidden="true"
             />
           </span>
@@ -132,7 +147,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.28 }}
-              className="text-xl sm:text-2xl font-medium text-slate-500"
+              className="text-sm sm:text-base font-semibold uppercase tracking-[0.22em] text-brass-700"
             >
               {roles[roleIndex]}
             </motion.p>
@@ -144,7 +159,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-lg text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed"
+          className="text-lg text-ink-600 max-w-2xl mx-auto mb-10 leading-relaxed"
         >
           {SITE_CONFIG.description}
         </motion.p>
@@ -156,15 +171,16 @@ export default function HeroSection() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14"
         >
+          {/* Squared edges and tracked caps — Deco signage, not a SaaS pill. */}
           <button
             onClick={() => scrollTo("projects")}
-            className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3 text-base font-semibold text-white bg-linear-to-r from-blue-600 to-violet-600 rounded-xl hover:from-blue-700 hover:to-violet-700 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 shadow-md hover:shadow-lg"
+            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-bone-50 bg-ink-900 ring-1 ring-ink-900 ring-offset-2 ring-offset-bone-100 hover:bg-ink-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700"
           >
             View Projects
           </button>
           <button
             onClick={() => scrollTo("contact")}
-            className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3 text-base font-semibold text-slate-700 bg-white rounded-xl border border-slate-200 hover:border-violet-300 hover:bg-violet-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 shadow-sm hover:shadow-md"
+            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-ink-800 bg-transparent border border-ink-400 hover:border-brass-600 hover:text-brass-700 hover:bg-brass-200/30 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700 focus-visible:ring-offset-2"
           >
             Get in Touch
           </button>
@@ -183,7 +199,7 @@ export default function HeroSection() {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+              className="p-2.5 text-ink-500 hover:text-brass-700 hover:bg-brass-200/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700"
               aria-label={label}
             >
               <Icon size={20} aria-hidden="true" />
@@ -198,10 +214,10 @@ export default function HeroSection() {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.1, duration: 0.5 }}
         onClick={() => scrollTo("about")}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-slate-400 hover:text-slate-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-ink-500 hover:text-brass-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700"
         aria-label="Scroll to About section"
       >
-        <span className="text-[10px] font-semibold uppercase tracking-widest">
+        <span className="text-[10px] font-bold uppercase tracking-[0.25em]">
           Scroll
         </span>
         <motion.div

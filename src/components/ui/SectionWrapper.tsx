@@ -64,10 +64,8 @@ export function SectionHeading({
       {eyebrow && (
         <p
           className={cn(
-            "text-sm font-semibold uppercase tracking-widest mb-3",
-            inverted
-              ? "text-blue-400"
-              : "bg-linear-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent",
+            "eyebrow mb-4",
+            inverted ? "text-brass-400" : "text-brass-700",
           )}
         >
           {eyebrow}
@@ -75,18 +73,27 @@ export function SectionHeading({
       )}
       <h2
         className={cn(
-          "text-3xl lg:text-4xl font-bold tracking-tight",
-          inverted ? "text-white" : "text-slate-900",
+          "font-display text-3xl lg:text-[2.6rem] lg:leading-[1.1]",
+          inverted ? "text-bone-100" : "text-ink-900",
         )}
       >
         {title}
       </h2>
+      {/* Deco double rule — the banding that sits under a Deco masthead. */}
+      <div
+        className={cn(
+          "rule-deco w-20 mt-5",
+          centered && "mx-auto",
+          inverted ? "text-brass-400" : "text-brass-500",
+        )}
+        aria-hidden="true"
+      />
       {description && (
         <p
           className={cn(
-            "mt-4 text-lg leading-relaxed",
+            "mt-5 text-lg leading-relaxed",
             centered && "max-w-2xl mx-auto",
-            inverted ? "text-slate-400" : "text-slate-600",
+            inverted ? "text-ink-200" : "text-ink-600",
           )}
         >
           {description}

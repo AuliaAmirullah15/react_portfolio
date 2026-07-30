@@ -30,8 +30,12 @@ const socials = [
   { icon: Globe, label: "Website", href: SITE_CONFIG.website },
 ] as const;
 
+// Input borders are UI components under WCAG 1.4.11, so they need 3:1 against
+// both their own fill and the page ground — ink-400 gives 4.1:1 and 3.8:1.
+// The focus ring stays visible rather than being swapped for a transparent
+// border, so the outline never collapses into the field edge.
 const inputBase =
-  "w-full px-4 py-2.5 text-sm text-slate-900 bg-white border rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder:text-slate-400";
+  "w-full px-4 py-2.5 text-sm text-ink-900 bg-bone-50 border transition-colors focus:outline-none focus:ring-2 focus:ring-brass-700 focus:ring-offset-1 focus:ring-offset-bone-100 placeholder:text-ink-500";
 
 export default function ContactSection() {
   const [status, setStatus] = useState<
@@ -74,20 +78,22 @@ export default function ContactSection() {
         {/* ── Left: contact info ─────────────────────────────── */}
         <aside className="lg:col-span-2 space-y-7">
           <div>
-            <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">
-              Email
+            {/* `.eyebrow` is inline-flex, so it needs a block wrapper here —
+                without one the inline <a> below flows up alongside it. */}
+            <p className="mb-3">
+              <span className="eyebrow text-brass-700">Email</span>
             </p>
             <a
               href={`mailto:${SITE_CONFIG.email}`}
-              className="text-blue-600 hover:text-blue-700 text-sm font-medium transition-colors break-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
+              className="text-brass-700 hover:text-ink-900 text-sm font-medium underline decoration-brass-400 underline-offset-4 transition-colors break-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700 focus-visible:ring-offset-2"
             >
               {SITE_CONFIG.email}
             </a>
           </div>
 
           <div>
-            <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">
-              Socials
+            <p className="mb-4">
+              <span className="eyebrow text-brass-700">Socials</span>
             </p>
             <div className="flex flex-col gap-3">
               {socials.map(({ icon: Icon, label, href }) => (
@@ -96,7 +102,7 @@ export default function ContactSection() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 text-slate-600 hover:text-slate-900 text-sm transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
+                  className="inline-flex items-center gap-3 text-ink-600 hover:text-brass-700 text-sm transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700 focus-visible:ring-offset-2"
                 >
                   <Icon size={16} aria-hidden="true" />
                   <span className="group-hover:underline underline-offset-2">
@@ -107,11 +113,11 @@ export default function ContactSection() {
             </div>
           </div>
 
-          <div className="p-4 bg-blue-50 border border-blue-100 rounded-2xl">
-            <p className="text-sm font-semibold text-blue-800 mb-1">
+          <div className="p-4 bg-brass-200/50 border-l-2 border-brass-500">
+            <p className="font-display text-base text-ink-900 mb-1">
               Response time
             </p>
-            <p className="text-xs text-blue-600">
+            <p className="text-xs text-ink-600">
               Typically within 24 hours on business days.
             </p>
           </div>
@@ -128,18 +134,18 @@ export default function ContactSection() {
             >
               <CheckCircle2
                 size={44}
-                className="text-green-500 mb-4"
+                className="text-verdigris-600 mb-4"
                 aria-hidden="true"
               />
-              <h3 className="text-lg font-bold text-slate-900 mb-2">
+              <h3 className="font-display text-2xl text-ink-900 mb-2">
                 Message sent!
               </h3>
-              <p className="text-slate-500 text-sm">
+              <p className="text-ink-600 text-sm">
                 Thanks for reaching out — I&apos;ll reply within 24 hours.
               </p>
               <button
                 onClick={() => setStatus("idle")}
-                className="mt-6 text-sm text-blue-600 hover:text-blue-700 font-medium underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
+                className="mt-6 text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-brass-700 hover:text-ink-900 border-b border-brass-500 pb-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700 focus-visible:ring-offset-2"
               >
                 Send another message
               </button>
@@ -156,7 +162,7 @@ export default function ContactSection() {
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium text-slate-700 mb-1.5"
+                    className="block text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-ink-600 mb-2"
                   >
                     Name
                   </label>
@@ -171,15 +177,15 @@ export default function ContactSection() {
                     className={cn(
                       inputBase,
                       errors.name
-                        ? "border-red-400"
-                        : "border-slate-200 hover:border-slate-300",
+                        ? "border-oxblood-600"
+                        : "border-ink-400 hover:border-brass-600",
                     )}
                   />
                   {errors.name && (
                     <p
                       id="name-error"
                       role="alert"
-                      className="mt-1 text-xs text-red-500"
+                      className="mt-1.5 text-xs font-medium text-oxblood-700"
                     >
                       {errors.name.message}
                     </p>
@@ -189,7 +195,7 @@ export default function ContactSection() {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium text-slate-700 mb-1.5"
+                    className="block text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-ink-600 mb-2"
                   >
                     Email
                   </label>
@@ -204,15 +210,15 @@ export default function ContactSection() {
                     className={cn(
                       inputBase,
                       errors.email
-                        ? "border-red-400"
-                        : "border-slate-200 hover:border-slate-300",
+                        ? "border-oxblood-600"
+                        : "border-ink-400 hover:border-brass-600",
                     )}
                   />
                   {errors.email && (
                     <p
                       id="email-error"
                       role="alert"
-                      className="mt-1 text-xs text-red-500"
+                      className="mt-1.5 text-xs font-medium text-oxblood-700"
                     >
                       {errors.email.message}
                     </p>
@@ -224,7 +230,7 @@ export default function ContactSection() {
               <div>
                 <label
                   htmlFor="subject"
-                  className="block text-sm font-medium text-slate-700 mb-1.5"
+                  className="block text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-ink-600 mb-2"
                 >
                   Subject
                 </label>
@@ -240,15 +246,15 @@ export default function ContactSection() {
                   className={cn(
                     inputBase,
                     errors.subject
-                      ? "border-red-400"
-                      : "border-slate-200 hover:border-slate-300",
+                      ? "border-oxblood-600"
+                      : "border-ink-400 hover:border-brass-600",
                   )}
                 />
                 {errors.subject && (
                   <p
                     id="subject-error"
                     role="alert"
-                    className="mt-1 text-xs text-red-500"
+                    className="mt-1.5 text-xs font-medium text-oxblood-700"
                   >
                     {errors.subject.message}
                   </p>
@@ -259,7 +265,7 @@ export default function ContactSection() {
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium text-slate-700 mb-1.5"
+                  className="block text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-ink-600 mb-2"
                 >
                   Message
                 </label>
@@ -276,15 +282,15 @@ export default function ContactSection() {
                     inputBase,
                     "resize-none",
                     errors.message
-                      ? "border-red-400"
-                      : "border-slate-200 hover:border-slate-300",
+                      ? "border-oxblood-600"
+                      : "border-ink-400 hover:border-brass-600",
                   )}
                 />
                 {errors.message && (
                   <p
                     id="message-error"
                     role="alert"
-                    className="mt-1 text-xs text-red-500"
+                    className="mt-1.5 text-xs font-medium text-oxblood-700"
                   >
                     {errors.message.message}
                   </p>
@@ -295,7 +301,7 @@ export default function ContactSection() {
               {status === "error" && (
                 <div
                   role="alert"
-                  className="flex items-center gap-2 text-sm text-red-700 bg-red-50 border border-red-200 rounded-xl px-4 py-3"
+                  className="flex items-center gap-2.5 text-sm text-oxblood-700 bg-oxblood-100 border-l-2 border-oxblood-600 px-4 py-3"
                 >
                   <AlertCircle size={15} aria-hidden="true" />
                   Something went wrong. Please try again or email me directly.
@@ -306,7 +312,7 @@ export default function ContactSection() {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-linear-to-r from-blue-600 to-violet-600 rounded-xl hover:from-blue-700 hover:to-violet-700 disabled:opacity-60 disabled:cursor-not-allowed transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 shadow-sm"
+                className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-bone-50 bg-ink-900 hover:bg-brass-700 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:bg-ink-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700 focus-visible:ring-offset-2"
               >
                 {status === "loading" ? (
                   <>

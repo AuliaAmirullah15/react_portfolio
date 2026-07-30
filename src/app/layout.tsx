@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import MotionProvider from "@/components/providers/MotionProvider";
 import { SITE_CONFIG } from "@/lib/constants";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://yourname.dev";
@@ -61,14 +62,14 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       {/* Skip-to-content link for keyboard & screen-reader users */}
-      <body className="bg-white text-slate-900 antialiased">
+      <body className="bg-bone-100 text-ink-800 antialiased">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-200 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-lg focus:font-semibold focus:shadow-lg"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-200 focus:px-4 focus:py-2 focus:bg-ink-900 focus:text-bone-50 focus:font-semibold focus:tracking-wide focus:shadow-lg focus:ring-1 focus:ring-brass-400"
         >
           Skip to main content
         </a>
-        {children}
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   );

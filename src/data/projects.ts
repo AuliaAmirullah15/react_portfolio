@@ -2,6 +2,26 @@ import type { Project } from "@/types";
 
 export const projects: Project[] = [
   {
+    id: "greggs-kms",
+    title: "Kitchen Management System",
+    description:
+      "Customer-facing self-service kitchen management system running on Linux and Kubernetes across Greggs stores. I re-architected the backend and infrastructure of the cloud and edge computing and re-assessed cloud messaging by introducing data streaming that suports persistence which reduced missing orders up to 98% in the Greggs estates and implemented websocket, a trading backend and edge sidecar to replace continuous polling over the internet and menu data availability regardless of poor internet connection in store.",
+    techStack: [
+      ".NET",
+      "Flutter",
+      "Dart",
+      "Docker",
+      "Azure DevOps",
+      "Linux",
+      "Kubernetes",
+      "Prometheus",
+      "Wiremock",
+    ],
+    imageUrl: "/projects/greggs-kiosk.jpg",
+    featured: true,
+    category: "linux",
+  },
+  {
     id: "greggs-kiosk",
     title: "Greggs Kiosk",
     description:

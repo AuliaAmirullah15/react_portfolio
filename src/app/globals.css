@@ -1,9 +1,81 @@
 @import "tailwindcss";
 
-:root {
-  --background: #fafaf7; /* warm off-white — less clinical than pure white */
-  --foreground: #0f172a;
-  /* System font stack — zero network dependency, great performance */
+/* ═══════════════════════════════════════════════════════════════════════════
+   INK & BRASS — an Art Deco / mid-century palette
+   ───────────────────────────────────────────────────────────────────────────
+   Warm near-black "ink", bone/parchment grounds, antique brass as the single
+   accent. Oxblood and verdigris appear only as semantic states.
+
+   Every pairing used in the UI is contrast-checked. Contract:
+
+     ON LIGHT GROUNDS (bone-50 / bone-100 / bone-200)
+       ink-900   headings                          15.7:1  AAA
+       ink-800   body                              13.2:1  AAA
+       ink-600   secondary body                     8.2:1  AAA
+       ink-500   muted / meta                       5.8:1  AA
+       ink-400   NON-TEXT ONLY (borders, icons)     3.8:1  — never body text
+       brass-700 accent text at any size            5.7:1  AA
+       brass-600 accent LARGE text only (>=24px)    4.3:1  AA-large
+
+     ON DARK GROUNDS (ink-950 / ink-900)
+       bone-100  headings                          16.7:1  AAA
+       ink-200   body                              10.1:1  AAA
+       ink-300   muted / meta                       7.0:1  AA
+       brass-400 accent                             8.0:1  AAA
+       brass-300 focus rings                       11.6:1  AAA
+
+   The one rule that is easy to break: brass-600 is large-text-only. Reach for
+   brass-700 for anything at body size.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@theme {
+  /* ── Ink: warm near-blacks, hue ~30deg. Never a blue-grey. ── */
+  --color-ink-950: #12100e;
+  --color-ink-900: #1a1714;
+  --color-ink-850: #221e1a;
+  --color-ink-800: #2a2622;
+  --color-ink-700: #3b352e;
+  --color-ink-600: #4e463c;
+  --color-ink-500: #655c4f;
+  --color-ink-400: #847969;
+  --color-ink-300: #a79b8a;
+  --color-ink-200: #c7bcab;
+
+  /* ── Bone: warm light surfaces. bone-100 is the page ground. ── */
+  --color-bone-50: #fbf9f4;
+  --color-bone-100: #f4f0e8;
+  --color-bone-200: #ebe5d9;
+  --color-bone-300: #ded5c4;
+  --color-bone-400: #cabfa9;
+
+  /* ── Brass: the only accent. ── */
+  --color-brass-200: #efe0bc;
+  --color-brass-300: #dfc98c;
+  --color-brass-400: #c9a44c;
+  --color-brass-500: #a8802c;
+  --color-brass-600: #8e6c22;
+  --color-brass-700: #79591a;
+  --color-brass-800: #5c4412;
+
+  /* ── Oxblood: errors, and a rare second accent. ── */
+  --color-oxblood-100: #f4e2df;
+  --color-oxblood-400: #c88a84;
+  --color-oxblood-600: #8a3a34;
+  --color-oxblood-700: #7a2e2e;
+
+  /* ── Verdigris: success / availability. Aged copper, not a UI green. ── */
+  --color-verdigris-100: #dfeae5;
+  --color-verdigris-400: #7fb3a5;
+  --color-verdigris-600: #2e6b5e;
+  --color-verdigris-700: #255649;
+
+  /* ── Type ──
+     No webfont: zero network bytes, zero layout shift. The elegance comes from
+     a system serif for display and wide-tracked caps for eyebrows. Iowan and
+     Palatino cover Apple, Georgia covers Windows/Android. */
+  --font-display:
+    "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia,
+    "Times New Roman", serif;
   --font-sans:
     ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -12,11 +84,9 @@
     monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
+:root {
+  --background: var(--color-bone-100);
+  --foreground: var(--color-ink-800);
 }
 
 html {
@@ -26,28 +96,119 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans, system-ui, Arial, sans-serif);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Accessible focus-visible styles */
-:focus-visible {
-  outline: 2px solid #2563eb;
-  outline-offset: 2px;
+/* Display face for headings and the wordmark. Opt-in via .font-display so body
+   copy keeps the sans stack. */
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.015em;
 }
 
-/* Custom scrollbar */
+/* ── Eyebrow: wide-tracked caps in brass, preceded by a short rule. ──
+   Does most of the "posh" work that a display webfont would otherwise do. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.eyebrow::before {
+  content: "";
+  width: 1.75rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+/* ── Deco double rule: one hairline, one heavier, the classic Deco banding. ──
+   A single element with a hard-stop gradient — no extra DOM, no extra paint. */
+.rule-deco {
+  height: 6px;
+  background-image: linear-gradient(
+    to bottom,
+    currentColor 0 3px,
+    transparent 3px 5px,
+    currentColor 5px 6px
+  );
+}
+
+/* ── Corner bracket: two hairlines meeting at a card corner. ── */
+.deco-corner {
+  position: absolute;
+  width: 0.875rem;
+  height: 0.875rem;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  pointer-events: none;
+}
+
+/* ── Stepped chevron band — a Deco motif as a repeating gradient. ──
+   Static background image: painted once, never composited per-frame. */
+.deco-band {
+  background-image: repeating-linear-gradient(
+    135deg,
+    currentColor 0 1px,
+    transparent 1px 9px
+  );
+}
+
+/* ── Focus: brass on light, bright brass on dark. ──
+   Both clear 3:1 against every surface they can land on. The offset ring keeps
+   the indicator legible even when the target sits on a brass fill. */
+:focus-visible {
+  outline: 2px solid var(--color-brass-700);
+  outline-offset: 2px;
+}
+.on-dark :focus-visible,
+.dark-section :focus-visible {
+  outline-color: var(--color-brass-300);
+}
+
+::selection {
+  background: var(--color-brass-300);
+  color: var(--color-ink-950);
+}
+
+/* ── Scrollbar ── */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: var(--color-bone-200);
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 3px;
+  background: var(--color-ink-300);
+  border: 3px solid var(--color-bone-200);
+  border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: var(--color-ink-400);
+}
+html {
+  scrollbar-color: var(--color-ink-300) var(--color-bone-200);
+}
+
+/* ── Respect prefers-reduced-motion ──
+   The page leans on scroll-triggered fades and a looping scroll cue. Users who
+   ask for reduced motion get the end state immediately rather than nothing. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

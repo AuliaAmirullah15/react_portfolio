@@ -21,12 +21,12 @@ export default function ExperienceSection() {
       <div className="relative">
         {/* Vertical line — hidden on mobile, centred on desktop */}
         <div
-          className="hidden md:block absolute left-1/2 -translate-x-px top-0 bottom-0 w-px bg-linear-to-b from-blue-300 via-violet-300 to-teal-300"
+          className="hidden md:block absolute left-1/2 -translate-x-px top-0 bottom-0 w-px bg-linear-to-b from-brass-500 via-brass-400 to-transparent"
           aria-hidden="true"
         />
         {/* Mobile line */}
         <div
-          className="md:hidden absolute left-5 top-0 bottom-0 w-px bg-linear-to-b from-blue-300 to-violet-300"
+          className="md:hidden absolute left-5 top-0 bottom-0 w-px bg-linear-to-b from-brass-500 to-transparent"
           aria-hidden="true"
         />
 
@@ -41,37 +41,37 @@ export default function ExperienceSection() {
                 transition={{ duration: 0.45, delay: i * 0.08 }}
                 className={`relative flex items-start gap-8 ${isLeft ? "md:flex-row" : "md:flex-row-reverse"}`}
               >
-                {/* Timeline dot */}
+                {/* Timeline marker — a brass lozenge on point, not a bubble. */}
                 <div
-                  className="hidden md:block absolute left-1/2 -translate-x-1/2 mt-6 w-3.5 h-3.5 rounded-full bg-linear-to-br from-blue-500 to-violet-600 border-2 border-white shadow ring-2 ring-violet-200"
+                  className="hidden md:block absolute left-1/2 -translate-x-1/2 mt-6 w-3 h-3 rotate-45 bg-brass-500 ring-4 ring-bone-100"
                   aria-hidden="true"
                 />
-                {/* Mobile dot */}
+                {/* Mobile marker */}
                 <div
-                  className="md:hidden absolute left-5 -translate-x-1/2 mt-5 w-3 h-3 rounded-full bg-linear-to-br from-blue-500 to-violet-600 border-2 border-white shadow"
+                  className="md:hidden absolute left-5 -translate-x-1/2 mt-5 w-2.5 h-2.5 rotate-45 bg-brass-500 ring-4 ring-bone-100"
                   aria-hidden="true"
                 />
 
                 {/* Card — full width on mobile, half on desktop */}
                 <div
-                  className={`relative overflow-hidden ml-12 md:ml-0 md:w-[calc(50%-2.5rem)] bg-[#fafaf7] rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow p-6 ${isLeft ? "md:pr-8" : "md:pl-8"}`}
+                  className={`relative overflow-hidden ml-12 md:ml-0 md:w-[calc(50%-2.5rem)] bg-bone-50 border border-bone-400 border-l-2 border-l-brass-500 hover:bg-brass-200/20 transition-colors p-6 ${isLeft ? "md:pr-8" : "md:pl-8"}`}
                 >
                   {/* Geometric corner accent */}
                   <div
-                    className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-slate-200"
+                    className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-brass-500/50"
                     aria-hidden="true"
                   />
-                  <span className="text-xs font-medium text-slate-400">
-                    {exp.startDate} - {exp.endDate ?? "Present"}
+                  <span className="text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-ink-500">
+                    {exp.startDate} — {exp.endDate ?? "Present"}
                   </span>
-                  <h3 className="mt-1 text-base font-bold text-slate-900">
+                  <h3 className="mt-2 font-display text-lg text-ink-900">
                     {exp.role}
                   </h3>
-                  <p className="text-sm font-semibold text-violet-600 mb-3">
+                  <p className="text-sm font-semibold text-brass-700 mb-3">
                     {exp.company}
                   </p>
 
-                  <p className="text-slate-600 text-sm leading-relaxed mb-4">
+                  <p className="text-ink-600 text-sm leading-relaxed mb-4">
                     {exp.description}
                   </p>
 
@@ -79,10 +79,10 @@ export default function ExperienceSection() {
                     {exp.achievements.map((achievement) => (
                       <li
                         key={achievement}
-                        className="flex items-start gap-2 text-slate-500 text-xs leading-relaxed"
+                        className="flex items-start gap-2.5 text-ink-600 text-xs leading-relaxed"
                       >
                         <span
-                          className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0"
+                          className="mt-1.5 w-1.5 h-1.5 rotate-45 bg-brass-500 shrink-0"
                           aria-hidden="true"
                         />
                         {achievement}
@@ -97,7 +97,7 @@ export default function ExperienceSection() {
                     {exp.techStack.map((tech) => (
                       <span
                         key={tech}
-                        className="text-[11px] font-medium px-2 py-0.5 bg-slate-100 text-slate-600 rounded-md"
+                        className="text-[11px] font-medium px-2 py-0.5 bg-bone-200 text-ink-700 border border-bone-400"
                       >
                         {tech}
                       </span>

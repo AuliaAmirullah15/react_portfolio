@@ -8,10 +8,12 @@ import { cn } from "@/lib/utils";
 
 type Filter = "all" | SkillCategoryKey;
 
+// Level reads as weight of material, not as a change of hue: solid ink for
+// expert, brass leaf for proficient, bare parchment for familiar.
 const levelConfig = {
-  expert: { label: "Expert", className: "bg-blue-600 text-white" },
-  proficient: { label: "Proficient", className: "bg-blue-100 text-blue-700" },
-  familiar: { label: "Familiar", className: "bg-slate-100 text-slate-600" },
+  expert: { label: "Expert", className: "bg-ink-900 text-brass-300" },
+  proficient: { label: "Proficient", className: "bg-brass-200 text-brass-800" },
+  familiar: { label: "Familiar", className: "bg-bone-200 text-ink-700" },
 } as const;
 
 // Per-property transitions. Keeping `layout` separate from opacity/scale matters:
@@ -65,10 +67,10 @@ export default function SkillsSection() {
                 aria-selected={isActive}
                 onClick={() => setFilter(key)}
                 className={cn(
-                  "px-4 py-1.5 rounded-full text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500",
+                  "px-4 py-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.14em] border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700 focus-visible:ring-offset-2",
                   isActive
-                    ? "bg-linear-to-r from-blue-600 to-violet-600 text-white shadow-sm"
-                    : "bg-slate-100 text-slate-600 hover:bg-slate-200",
+                    ? "bg-ink-900 border-ink-900 text-brass-300"
+                    : "bg-transparent border-bone-400 text-ink-600 hover:border-brass-600 hover:text-brass-700",
                 )}
               >
                 {label}
@@ -99,14 +101,14 @@ export default function SkillsSection() {
               exit={{ opacity: 0, scale: 0.92 }}
               whileHover={{ y: -2 }}
               transition={CARD_TRANSITION}
-              className="flex flex-col items-center gap-2 bg-white border border-slate-200 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow"
+              className="flex flex-col items-center gap-2.5 bg-bone-50 border border-bone-400 p-4 hover:border-brass-500 transition-colors"
             >
-              <span className="text-sm font-semibold text-slate-900 text-center leading-tight">
+              <span className="text-sm font-semibold text-ink-900 text-center leading-tight">
                 {skill.name}
               </span>
               <span
                 className={cn(
-                  "text-[11px] px-2 py-0.5 rounded-full font-semibold",
+                  "text-[10px] px-2 py-0.5 font-bold uppercase tracking-widest",
                   levelConfig[skill.level].className,
                 )}
                 aria-label={`Level: ${levelConfig[skill.level].label}`}

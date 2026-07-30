@@ -64,6 +64,7 @@ export const experiences: Experience[] = [
       "Shipped a cross-platform SPA ERP app to the App Store and Google Play",
       "Integrated geolocation verification, biometric authentication, camera, and i18n support",
       "Delivered multiple third-party API integrations using Axios and Fetch",
+      "Liaised with designers, developers, testers and project owner to ensure the efficiency of APIs, software security, continuous improvement and user experiences",
     ],
     techStack: ["Vue.js", "Flutter", "Axios", "REST APIs", "i18n"],
   },
@@ -77,8 +78,54 @@ export const experiences: Experience[] = [
       "Frontend development for ERP tooling and e-commerce projects, with a focus on cross-platform delivery and custom theming.",
     achievements: [
       "Built a Vue.js/Quasar ERP application with price calculation, dashboards, and Cordova mobile deployment",
+      "Connected features with JSON-based APIs via Vuex, Axios and javascript modules",
       "Developed a custom theme for the Cold Storage e-commerce website",
+      "Debugged and resolved software defects and issue",
     ],
     techStack: ["Vue.js", "Quasar", "Cordova", "JavaScript", "CSS", "SCSS"],
+  },
+  {
+    id: "exp-5",
+    company: "Universitas Sumatera Utara",
+    role: "Full Stack Developer",
+    startDate: "January 2017",
+    endDate: "April 2020",
+    description:
+      "Monorepo development for bachelor's thesis management portal, lecturer's research project management portal and finance allocation management portal for the University.",
+    achievements: [
+      "Collaborated with cross-functional teams to identify user requirements and to invent system designs",
+      "Orchestrated continuously a student thesis management portal and research publication management system with user-centric approach",
+      "Debugged and resolved software defects and issues",
+    ],
+    techStack: ["PHP", "HTML", "CSS", "JavaScript", "MySql"],
+  },
+  {
+    id: "exp-6",
+    company: "Universitas Sumatera Utara",
+    role: "Laboratory Assistant",
+    startDate: "March 2016",
+    endDate: "Febuary 2017",
+    description:
+      "Teaching second year students in Internet Programming and Relational Database Management System.",
+    achievements: [
+      "Taught web applications by implementing PHP, MySQL, Object Oriented Programming, Codeigniter Framework and Twitter API",
+      "Taught Relational Database Management System using MySql",
+    ],
+    techStack: ["PHP", "Codeigniter", "HTML", "CSS", "JavaScript", "MySql"],
+  },
+  {
+    id: "exp-7",
+    company: "Universitas Sumatera Utara",
+    role: "Data Science Instructor Assistant",
+    startDate: "September 2019",
+    endDate: "December 2019",
+    description:
+      "Assisted lecteurers teaching Data Science in the Digital Talent Scholarship Program, an intensive program of the Ministry of Communication and Information of Indonesia to enhance the quality of human resource in ICT field.",
+    achievements: [
+      "Taught students Python programming",
+      "Taught students NumPy and Spark",
+      "Taught students Natural Language Generation and NLTK",
+    ],
+    techStack: ["Python", "Numpy", "Spark", "NLG", "NLTK", "MySql"],
   },
 ];

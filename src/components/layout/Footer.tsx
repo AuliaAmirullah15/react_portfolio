@@ -12,18 +12,23 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-900 text-slate-400" role="contentinfo">
+    <footer
+      className="dark-section bg-ink-950 text-ink-300 border-t-2 border-brass-500"
+      role="contentinfo"
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Brand */}
           <div className="text-center md:text-left">
-            <p className="text-white font-bold text-sm mb-0.5">
+            <p className="font-display text-xl text-bone-100 mb-1">
               {SITE_CONFIG.name}
-              <span className="text-blue-400" aria-hidden="true">
+              <span className="text-brass-400" aria-hidden="true">
                 .
               </span>
             </p>
-            <p className="text-slate-500 text-xs">{SITE_CONFIG.title}</p>
+            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-ink-300">
+              {SITE_CONFIG.title}
+            </p>
           </div>
 
           {/* Social links */}
@@ -34,7 +39,7 @@ export default function Footer() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 rounded"
+                className="hover:text-brass-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-300"
                 aria-label={label}
               >
                 <Icon size={18} aria-hidden="true" />
@@ -43,7 +48,7 @@ export default function Footer() {
           </div>
 
           {/* Copyright */}
-          <p className="text-xs text-slate-500 text-center md:text-right">
+          <p className="text-xs text-ink-300 text-center md:text-right">
             © {year} {SITE_CONFIG.name}. Built with Next.js.
           </p>
         </div>

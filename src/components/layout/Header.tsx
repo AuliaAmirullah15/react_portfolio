@@ -64,7 +64,7 @@ export default function Header() {
           interpolated backdrop-filter (which pops) and border-width (0 -> 1px). */}
       <div
         className={cn(
-          "absolute inset-x-0 top-0 h-16 border-b border-slate-200/60 bg-[#fafaf7]/92 shadow-sm backdrop-blur-sm transition-opacity duration-300 ease-out",
+          "absolute inset-x-0 top-0 h-16 border-b border-brass-500/35 bg-bone-100/92 shadow-sm backdrop-blur-sm transition-opacity duration-300 ease-out",
           scrolled ? "opacity-100" : "opacity-0",
         )}
         aria-hidden="true"
@@ -74,11 +74,11 @@ export default function Header() {
           {/* Wordmark */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="text-lg font-bold text-slate-900 tracking-tight hover:text-blue-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
+            className="font-display text-xl text-ink-900 hover:text-brass-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700"
             aria-label="Scroll to top"
           >
             {SITE_CONFIG.name.split(" ")[0]}
-            <span className="text-blue-600 font-bold" aria-hidden="true">
+            <span className="text-brass-600" aria-hidden="true">
               .
             </span>
           </button>
@@ -93,10 +93,12 @@ export default function Header() {
                 key={link.href}
                 onClick={() => scrollTo(link.href)}
                 className={cn(
-                  "px-3 py-2 text-sm font-medium rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500",
+                  // Brass underline instead of a filled pill — the active state
+                  // reads as a rule under a masthead entry.
+                  "px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] border-b-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700",
                   activeSection === link.href
-                    ? "text-blue-600 bg-blue-50"
-                    : "text-slate-600 hover:text-slate-900 hover:bg-slate-100",
+                    ? "text-brass-700 border-brass-500"
+                    : "text-ink-600 border-transparent hover:text-ink-900 hover:border-ink-300",
                 )}
                 aria-current={activeSection === link.href ? "true" : undefined}
               >
@@ -109,14 +111,14 @@ export default function Header() {
           <div className="flex items-center gap-3">
             <button
               onClick={() => scrollTo("#contact")}
-              className="hidden md:inline-flex items-center px-4 py-2 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 shadow-sm"
+              className="hidden md:inline-flex items-center px-5 py-2 text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-bone-50 bg-ink-900 hover:bg-brass-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700 focus-visible:ring-offset-2"
             >
               Contact Me
             </button>
 
             <button
               onClick={() => setMobileOpen((v) => !v)}
-              className="md:hidden p-2 text-slate-600 hover:text-slate-900 rounded-md hover:bg-slate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+              className="md:hidden p-2 text-ink-600 hover:text-brass-700 hover:bg-brass-200/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700"
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav"
               aria-label={
@@ -140,11 +142,19 @@ export default function Header() {
             id="mobile-nav"
             role="navigation"
             aria-label="Mobile navigation"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.22, ease: "easeInOut" }}
-            className="md:hidden overflow-hidden bg-white border-b border-slate-200 shadow-lg"
+            // Do NOT animate height to/from "auto" here. Framer has to measure
+            // the element to resolve "auto", and its measurement pass suspends
+            // window scroll and then restores it to the offset captured before
+            // the pass — which silently killed the smooth scroll that scrollTo()
+            // starts in the same tick, so tapping a nav item closed the menu and
+            // went nowhere. Opacity/transform need no measurement, and they are
+            // compositor-only. The panel sits inside a fixed header, so its
+            // height never affected document flow anyway.
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            className="md:hidden bg-bone-50 border-b border-brass-500/35 shadow-lg"
           >
             <div className="px-4 py-3 flex flex-col gap-1">
               {NAV_LINKS.map((link) => (
@@ -152,10 +162,10 @@ export default function Header() {
                   key={link.href}
                   onClick={() => scrollTo(link.href)}
                   className={cn(
-                    "px-3 py-2.5 text-sm font-medium rounded-md text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500",
+                    "px-3 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] border-l-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700",
                     activeSection === link.href
-                      ? "text-blue-600 bg-blue-50"
-                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-100",
+                      ? "text-brass-700 border-brass-500 bg-brass-200/30"
+                      : "text-ink-600 border-transparent hover:text-ink-900 hover:bg-bone-200",
                   )}
                 >
                   {link.label}

@@ -10,31 +10,29 @@ import { projects } from "@/data/projects";
 import { SITE_CONFIG } from "@/lib/constants";
 import type { Project } from "@/types";
 
+// Categories are distinguished by the *weight* of the brass rule and the fill
+// of the badge, not by six competing hues. Two families only — brass and ink —
+// which keeps the grid reading as one collection.
+//
+// (The previous `categoryTopBorder.linux` was `bg-green-50`, a background class
+// in a border slot, so Linux cards silently rendered no top rule at all. Every
+// entry here is a border colour.)
 const categoryBadge: Record<Project["category"], string> = {
-  web: "bg-blue-50 text-blue-700 border-blue-100",
-  api: "bg-teal-50 text-teal-700 border-teal-100",
-  ai: "bg-violet-50 text-violet-700 border-violet-100",
-  mobile: "bg-amber-50 text-amber-700 border-amber-100",
-  other: "bg-slate-50 text-slate-700 border-slate-200",
-  linux: "bg-green-50 text-green-700 border-green-100",
+  web: "bg-ink-900 text-brass-300 border-ink-900",
+  api: "bg-brass-200 text-brass-800 border-brass-400",
+  ai: "bg-brass-500 text-ink-950 border-brass-500",
+  mobile: "bg-verdigris-100 text-verdigris-700 border-verdigris-400",
+  other: "bg-bone-200 text-ink-700 border-bone-400",
+  linux: "bg-ink-700 text-brass-200 border-ink-700",
 };
 
 const categoryTopBorder: Record<Project["category"], string> = {
-  web: "border-t-blue-500",
-  api: "border-t-teal-500",
-  ai: "border-t-violet-500",
-  mobile: "border-t-amber-500",
-  other: "border-t-slate-400",
-  linux: "bg-green-50",
-};
-
-const categoryPlaceholderBg: Record<Project["category"], string> = {
-  web: "bg-blue-50",
-  api: "bg-teal-50",
-  ai: "bg-violet-50",
-  mobile: "bg-amber-50",
-  other: "bg-slate-50",
-  linux: "bg-green-50",
+  web: "border-t-ink-900",
+  api: "border-t-brass-400",
+  ai: "border-t-brass-600",
+  mobile: "border-t-verdigris-600",
+  other: "border-t-bone-400",
+  linux: "border-t-ink-700",
 };
 
 export default function ProjectsSection() {
@@ -43,7 +41,7 @@ export default function ProjectsSection() {
   const inView = useInView(gridRef, { once: true, margin: "-80px" });
 
   return (
-    <SectionWrapper id="projects" className="bg-violet-50/40">
+    <SectionWrapper id="projects" className="bg-bone-200">
       <SectionHeading
         eyebrow="Projects"
         title="Things I've built"
@@ -60,12 +58,13 @@ export default function ProjectsSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.4, delay: i * 0.08 }}
-            className={`bg-white rounded-2xl border border-slate-200 border-t-4 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col overflow-hidden ${categoryTopBorder[project.category]}`}
+            // The category top rule is the card's identity, so hover shifts the
+            // fill rather than the border — a `hover:border-*` would repaint all
+            // four sides and take the top rule's colour with it.
+            className={`bg-bone-50 hover:bg-brass-200/25 border border-bone-400 border-t-4 hover:-translate-y-1 transition-[transform,background-color] duration-200 flex flex-col overflow-hidden ${categoryTopBorder[project.category]}`}
           >
             {/* Project image / placeholder */}
-            <div
-              className={`relative h-40 w-full shrink-0 ${categoryPlaceholderBg[project.category]}`}
-            >
+            <div className="relative h-40 w-full shrink-0 bg-bone-200">
               {project.imageUrl ? (
                 <Image
                   src={project.imageUrl}
@@ -88,7 +87,7 @@ export default function ProjectsSection() {
             <div className="p-5 flex-1">
               <div className="flex items-start justify-between mb-3">
                 <span
-                  className={`text-[11px] font-bold px-2.5 py-1 rounded-full border uppercase tracking-wide ${categoryBadge[project.category]}`}
+                  className={`text-[10px] font-bold px-2.5 py-1 border uppercase tracking-[0.16em] ${categoryBadge[project.category]}`}
                 >
                   {project.category}
                 </span>
@@ -98,7 +97,7 @@ export default function ProjectsSection() {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-1.5 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                      className="p-1.5 text-ink-500 hover:text-brass-700 hover:bg-brass-200/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700"
                       aria-label={`View ${project.title} source on GitHub`}
                     >
                       <GitHubIcon size={15} aria-hidden="true" />
@@ -109,7 +108,7 @@ export default function ProjectsSection() {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-1.5 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                      className="p-1.5 text-ink-500 hover:text-brass-700 hover:bg-brass-200/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700"
                       aria-label={`Open ${project.title} live site`}
                     >
                       <ExternalLink size={15} aria-hidden="true" />
@@ -118,10 +117,10 @@ export default function ProjectsSection() {
                 </div>
               </div>
 
-              <h3 className="text-base font-bold text-slate-900 mb-2">
+              <h3 className="font-display text-lg text-ink-900 mb-2">
                 {project.title}
               </h3>
-              <p className="text-slate-600 text-sm leading-relaxed">
+              <p className="text-ink-600 text-sm leading-relaxed">
                 {project.description}
               </p>
             </div>
@@ -135,7 +134,7 @@ export default function ProjectsSection() {
                 {project.techStack.map((tech) => (
                   <span
                     key={tech}
-                    className="text-xs font-medium px-2 py-0.5 bg-slate-100 text-slate-600 rounded-md"
+                    className="text-[11px] font-medium px-2 py-0.5 bg-bone-200 text-ink-700 border border-bone-400"
                   >
                     {tech}
                   </span>
@@ -152,7 +151,7 @@ export default function ProjectsSection() {
           href={SITE_CONFIG.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
+          className="inline-flex items-center gap-2.5 text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-brass-700 hover:text-ink-900 border-b border-brass-500 pb-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700 focus-visible:ring-offset-2"
         >
           View all projects on GitHub
           <ArrowRight size={14} aria-hidden="true" />
