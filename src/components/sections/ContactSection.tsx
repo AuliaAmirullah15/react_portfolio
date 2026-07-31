@@ -133,7 +133,7 @@ export default function ContactSection() {
                 Message sent.
               </h3>
               <p className="mt-4 text-ink-600">
-                Thanks for reaching out &mdash; I&apos;ll reply within 24 hours.
+                Thanks for reaching out. I&apos;ll reply within 24 hours.
               </p>
               <button
                 onClick={() => setStatus("idle")}
