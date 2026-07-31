@@ -22,7 +22,6 @@ const socials = [
 export default function HeroSection() {
   const [roleIndex, setRoleIndex] = useState(0);
 
-  // Cycle through roles
   useEffect(() => {
     const id = setInterval(
       () => setRoleIndex((i) => (i + 1) % roles.length),
@@ -37,196 +36,172 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
+      className="relative flex min-h-screen flex-col justify-center overflow-hidden pt-24 pb-20"
       aria-label="Introduction"
     >
-      {/* Subtle dot-grid background */}
+      {/* ── Deco sunburst, anchored off the right edge. A single static conic
+          gradient: one paint, no per-frame cost, no extra DOM. ── */}
       <div
-        className="absolute inset-0 opacity-[0.04]"
+        aria-hidden="true"
+        className="deco-sunburst pointer-events-none absolute top-1/2 -right-1/3 -z-10 aspect-square w-[130vw] -translate-y-1/2 text-jade-700/13 sm:-right-1/4 sm:w-[85vw]"
+        // The mask fades the CENTRE as well as the rim. Radiating lines
+        // converge to a dense knot at the origin; leaving that visible put a
+        // busy patch behind the copy.
         style={{
-          backgroundImage:
-            // var(), not a literal, so the dot grid follows the active palette.
-            "radial-gradient(circle, var(--color-ink-950) 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
+          maskImage:
+            "radial-gradient(circle, transparent 8%, black 42%, transparent 78%)",
+          WebkitMaskImage:
+            "radial-gradient(circle, transparent 8%, black 42%, transparent 78%)",
         }}
-        aria-hidden="true"
       />
 
-      {/* ── Geometric rings — upper right (Art Deco / MCM) ──
-          One hue, varied weight and opacity. The pastel-per-ring version read
-          as a colour test card; concentric brass reads as inlay. */}
-      <div
-        className="absolute -top-24 -right-24 w-140 h-140 rounded-full border border-ink-300/40 pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute -top-10 -right-10 w-100 h-100 rounded-full border border-brass-500/25 pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute top-12 right-12 w-60 h-60 rounded-full border-2 border-brass-500/40 pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute top-24 right-24 w-30 h-30 rounded-full border border-brass-600/55 pointer-events-none"
-        aria-hidden="true"
-      />
-
-      {/* ── Geometric rings — lower left ── */}
-      <div
-        className="absolute -bottom-20 -left-20 w-90 h-90 rounded-full border border-ink-300/35 pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute -bottom-6 -left-6 w-55 h-55 rounded-full border border-brass-500/30 pointer-events-none"
-        aria-hidden="true"
-      />
-
-      {/* ── Stepped chevron bands — Deco corner fill, pure CSS gradient ── */}
-      <div
-        className="deco-band absolute top-0 left-0 w-40 h-40 text-ink-400/30 pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="deco-band absolute bottom-0 right-0 w-40 h-40 text-brass-500/25 pointer-events-none"
-        aria-hidden="true"
-      />
-
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Open-to-work badge */}
-        {SITE_CONFIG.openToWork && (
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-            className="inline-flex items-center gap-2.5 mb-8 px-4 py-1.5 bg-verdigris-100 border border-verdigris-400/50 text-verdigris-700 text-[0.6875rem] font-bold uppercase tracking-[0.18em]"
-            role="status"
-          >
-            <span
-              className="w-1.5 h-1.5 rotate-45 bg-verdigris-600"
-              aria-hidden="true"
-            />
-            Open to opportunities
-          </motion.div>
-        )}
-
-        {/* ── Name heading ── */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="font-display text-5xl sm:text-6xl lg:text-7xl text-ink-900 mb-6"
-        >
-          <span className="block text-base font-sans font-bold uppercase tracking-[0.3em] text-ink-500 mb-4">
-            Hi, I&apos;m
-          </span>
-          <span className="relative inline-block">
-            <span className="relative z-10 text-ink-950">
-              {SITE_CONFIG.name}
-            </span>
-            {/* Brass underlay — a struck rule rather than a gradient wash. */}
-            <span
-              className="absolute bottom-1.5 left-0 w-full h-2.5 bg-brass-300/60 -z-10"
-              aria-hidden="true"
-            />
-          </span>
-        </motion.h1>
-
-        {/* Cycling role label */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="h-9 mb-6"
-          aria-live="polite"
-          aria-atomic="true"
-        >
-          <AnimatePresence mode="wait">
+      <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-12">
+        <div className="ed-grid">
+          {/* ── Left gutter: the metadata block ── */}
+          <div className="pt-2">
             <motion.p
-              key={roleIndex}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.28 }}
-              className="text-sm sm:text-base font-semibold uppercase tracking-[0.22em] text-brass-700"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4 }}
+              className="t-label text-jade-700"
             >
-              {roles[roleIndex]}
+              00 / Index
             </motion.p>
-          </AnimatePresence>
-        </motion.div>
 
-        {/* Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-lg text-ink-600 max-w-2xl mx-auto mb-10 leading-relaxed"
-        >
-          {SITE_CONFIG.description}
-        </motion.p>
-
-        {/* CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14"
-        >
-          {/* Squared edges and tracked caps — Deco signage, not a SaaS pill. */}
-          <button
-            onClick={() => scrollTo("projects")}
-            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-bone-50 bg-ink-900 ring-1 ring-ink-900 ring-offset-2 ring-offset-bone-100 hover:bg-ink-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700"
-          >
-            View Projects
-          </button>
-          <button
-            onClick={() => scrollTo("contact")}
-            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-ink-800 bg-transparent border border-ink-400 hover:border-brass-600 hover:text-brass-700 hover:bg-brass-200/30 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700 focus-visible:ring-offset-2"
-          >
-            Get in Touch
-          </button>
-        </motion.div>
-
-        {/* Social links */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.55 }}
-          className="flex items-center justify-center gap-3"
-        >
-          {socials.map(({ icon: Icon, label, href }) => (
-            <a
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2.5 text-ink-500 hover:text-brass-700 hover:bg-brass-200/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700"
-              aria-label={label}
+            <motion.dl
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="mt-6 space-y-3 text-sm"
             >
-              <Icon size={20} aria-hidden="true" />
-            </a>
-          ))}
-        </motion.div>
+              <div>
+                <dt className="t-label text-ink-400">Based</dt>
+                <dd className="mt-1 text-ink-600">{SITE_CONFIG.location}</dd>
+              </div>
+              {SITE_CONFIG.openToWork && (
+                <div>
+                  <dt className="t-label text-ink-400">Status</dt>
+                  <dd className="mt-1 flex items-center gap-2 text-jade-700">
+                    <span
+                      aria-hidden="true"
+                      className="h-1.5 w-1.5 rotate-45 bg-jade-600"
+                    />
+                    Open to work
+                  </dd>
+                </div>
+              )}
+            </motion.dl>
+          </div>
+
+          {/* ── Content column ── */}
+          <div>
+            {/* Name, set very large and ragged. Two lines, deliberately
+                unbalanced — the surname overhangs the given name. */}
+            <motion.h1
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.1 }}
+              className="t-display text-ink-950"
+            >
+              <span className="block">Aulia</span>
+              <span className="block pl-[8%] text-jade-700">Zulkarneidi</span>
+            </motion.h1>
+
+            {/* Cycling role, as a mono ticker rather than a soft subtitle */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="mt-10 flex items-baseline gap-4 border-t border-ink-950 pt-4"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              <span className="t-label shrink-0 text-ink-400">Currently</span>
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={roleIndex}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.25 }}
+                  className="t-label-lg text-ink-800"
+                >
+                  {roles[roleIndex]}
+                </motion.p>
+              </AnimatePresence>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="mt-8 max-w-xl text-lg leading-relaxed text-ink-600"
+            >
+              {SITE_CONFIG.description}
+            </motion.p>
+
+            {/* CTAs — a solid ink block and a bare underlined link, not two
+                matching buttons. */}
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="mt-12 flex flex-wrap items-center gap-x-10 gap-y-5"
+            >
+              <button
+                onClick={() => scrollTo("projects")}
+                className="t-label-lg group inline-flex items-center gap-3 bg-ink-950 px-7 py-4 text-paper-50 transition-colors hover:bg-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2"
+              >
+                View Work
+                <span
+                  aria-hidden="true"
+                  className="transition-transform group-hover:translate-x-1"
+                >
+                  &rarr;
+                </span>
+              </button>
+              <button
+                onClick={() => scrollTo("contact")}
+                className="t-label-lg border-b-2 border-jade-600 pb-1 text-ink-800 transition-colors hover:text-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2"
+              >
+                Get in touch
+              </button>
+
+              <div className="flex items-center gap-1">
+                {socials.map(({ icon: Icon, label, href }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 text-ink-500 transition-colors hover:text-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700"
+                    aria-label={label}
+                  >
+                    <Icon size={17} aria-hidden="true" />
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </div>
 
-      {/* Animated scroll indicator */}
+      {/* Scroll cue, pinned to the left rather than centred */}
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.1, duration: 0.5 }}
+        transition={{ delay: 1, duration: 0.5 }}
         onClick={() => scrollTo("about")}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-ink-500 hover:text-brass-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700"
+        className="absolute bottom-8 left-5 flex items-center gap-3 text-ink-500 transition-colors hover:text-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 sm:left-8 lg:left-12"
         aria-label="Scroll to About section"
       >
-        <span className="text-[10px] font-bold uppercase tracking-[0.25em]">
-          Scroll
-        </span>
-        <motion.div
-          animate={{ y: [0, 5, 0] }}
+        <span className="t-label">Scroll</span>
+        <motion.span
+          animate={{ y: [0, 4, 0] }}
           transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
         >
-          <ArrowDown size={15} aria-hidden="true" />
-        </motion.div>
+          <ArrowDown size={14} aria-hidden="true" />
+        </motion.span>
       </motion.button>
     </section>
   );

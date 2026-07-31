@@ -59,16 +59,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // data-palette picks the colour scheme: "bordeaux" | "emerald" | "midnight",
-  // or remove the attribute for the default Ink & Brass. See ALTERNATE PALETTES
-  // in globals.css - switching needs no component changes.
   return (
-    <html lang="en" className="scroll-smooth" data-palette="">
+    <html lang="en" className="scroll-smooth">
       {/* Skip-to-content link for keyboard & screen-reader users */}
-      <body className="bg-bone-100 text-ink-800 antialiased">
+      <body className="bg-paper-100 text-ink-800 antialiased">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-200 focus:px-4 focus:py-2 focus:bg-ink-900 focus:text-bone-50 focus:font-semibold focus:tracking-wide focus:shadow-lg focus:ring-1 focus:ring-brass-400"
+          className="t-label sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-200 focus:bg-ink-950 focus:px-4 focus:py-3 focus:text-paper-50 focus:shadow-lg focus:ring-2 focus:ring-jade-300"
         >
           Skip to main content
         </a>

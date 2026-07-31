@@ -4,9 +4,9 @@ export const SITE_CONFIG = {
   name: "Aulia Zulkarneidi",
   title: "Senior Software Developer",
   description:
-    "Senior Software Developer with 4+ years\' experience delivering event-driven, production systems at scale. Specialising in distributed messaging, .NET microservices on Azure, and full-stack engineering across retail and enterprise environments.",
+    "Senior Software Developer with 7+ years\' experience delivering event-driven, production systems at scale. Specialising in distributed messaging, .NET microservices on Azure, and full-stack engineering across retail and enterprise environments.",
   email: "auliaamir153@gmail.com",
-  github: "https://github.com/auliaamir",
+  github: "https://github.com/auliaamirullah15",
   linkedin: "https://linkedin.com/in/auliazulkarneidi",
   website: "https://auliaz.com",
   location: "Newcastle, UK",

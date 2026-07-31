@@ -12,45 +12,49 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer
-      className="dark-section bg-ink-950 text-ink-300 border-t-2 border-brass-500"
-      role="contentinfo"
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Brand */}
-          <div className="text-center md:text-left">
-            <p className="font-display text-xl text-bone-100 mb-1">
-              {SITE_CONFIG.name}
-              <span className="text-brass-400" aria-hidden="true">
-                .
-              </span>
-            </p>
-            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-ink-300">
-              {SITE_CONFIG.title}
-            </p>
+    <footer className="on-ink bg-ink-950 text-ink-300" role="contentinfo">
+      <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 lg:px-12">
+        {/* The name set large one last time — a colophon, not a small print row */}
+        <p className="t-title text-paper-100">
+          {SITE_CONFIG.name}
+          <span className="text-jade-400" aria-hidden="true">
+            .
+          </span>
+        </p>
+
+        <div className="ed-row mt-12 grid gap-8 pt-8 sm:grid-cols-3">
+          <div>
+            <p className="t-label text-ink-400">Role</p>
+            <p className="mt-2 text-sm text-ink-200">{SITE_CONFIG.title}</p>
           </div>
 
-          {/* Social links */}
-          <div className="flex items-center gap-4">
-            {socials.map(({ icon: Icon, label, href }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-brass-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-300"
-                aria-label={label}
-              >
-                <Icon size={18} aria-hidden="true" />
-              </a>
-            ))}
+          <div>
+            <p className="t-label text-ink-400">Elsewhere</p>
+            <ul className="mt-2 space-y-1.5">
+              {socials.map(({ icon: Icon, label, href }) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-2 text-sm text-ink-200 transition-colors hover:text-jade-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-200 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+                  >
+                    <Icon size={13} aria-hidden="true" />
+                    <span className="underline-offset-4 group-hover:underline">
+                      {label}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Copyright */}
-          <p className="text-xs text-ink-300 text-center md:text-right">
-            © {year} {SITE_CONFIG.name}. Built with Next.js.
-          </p>
+          <div>
+            <p className="t-label text-ink-400">Copyright</p>
+            <p className="mt-2 text-sm leading-relaxed text-ink-300">
+              © {year}. Built with Next.js.
+            </p>
+          </div>
         </div>
       </div>
     </footer>

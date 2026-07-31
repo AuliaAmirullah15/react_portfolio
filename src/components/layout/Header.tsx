@@ -64,22 +64,23 @@ export default function Header() {
           interpolated backdrop-filter (which pops) and border-width (0 -> 1px). */}
       <div
         className={cn(
-          "absolute inset-x-0 top-0 h-16 border-b border-brass-500/35 bg-bone-100/92 shadow-sm backdrop-blur-sm transition-opacity duration-300 ease-out",
+          "absolute inset-x-0 top-0 h-14 border-b border-ink-950 bg-paper-100/95 backdrop-blur-sm transition-opacity duration-300 ease-out",
           scrolled ? "opacity-100" : "opacity-0",
         )}
         aria-hidden="true"
       />
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Wordmark */}
+      <div className="relative mx-auto max-w-6xl px-5 sm:px-8 lg:px-12">
+        <div className="flex h-14 items-center justify-between">
+          {/* Wordmark — full name in mono caps, read as a masthead slug */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="font-display text-xl text-ink-900 hover:text-brass-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700"
+            className="t-label-lg text-ink-950 transition-colors hover:text-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2"
             aria-label="Scroll to top"
           >
-            {SITE_CONFIG.name.split(" ")[0]}
-            <span className="text-brass-600" aria-hidden="true">
-              .
+            {SITE_CONFIG.name}
+            <span className="text-jade-600" aria-hidden="true">
+              {" "}
+              &mdash;
             </span>
           </button>
 
@@ -88,20 +89,30 @@ export default function Header() {
             aria-label="Main navigation"
             className="hidden md:flex items-center gap-1"
           >
-            {NAV_LINKS.map((link) => (
+            {NAV_LINKS.map((link, i) => (
               <button
                 key={link.href}
                 onClick={() => scrollTo(link.href)}
                 className={cn(
-                  // Brass underline instead of a filled pill — the active state
-                  // reads as a rule under a masthead entry.
-                  "px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] border-b-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700",
+                  "t-label group flex items-center gap-1.5 px-2.5 py-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2",
                   activeSection === link.href
-                    ? "text-brass-700 border-brass-500"
-                    : "text-ink-600 border-transparent hover:text-ink-900 hover:border-ink-300",
+                    ? "text-jade-700"
+                    : "text-ink-500 hover:text-ink-950",
                 )}
                 aria-current={activeSection === link.href ? "true" : undefined}
               >
+                {/* Numbered nav — matches the section numerals on the page */}
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    "tabular-nums transition-colors",
+                    activeSection === link.href
+                      ? "text-jade-500"
+                      : "text-ink-300",
+                  )}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
                 {link.label}
               </button>
             ))}
@@ -111,14 +122,14 @@ export default function Header() {
           <div className="flex items-center gap-3">
             <button
               onClick={() => scrollTo("#contact")}
-              className="hidden md:inline-flex items-center px-5 py-2 text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-bone-50 bg-ink-900 hover:bg-brass-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700 focus-visible:ring-offset-2"
+              className="t-label hidden items-center bg-ink-950 px-5 py-2.5 text-paper-50 transition-colors hover:bg-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2 md:inline-flex"
             >
-              Contact Me
+              Get in touch
             </button>
 
             <button
               onClick={() => setMobileOpen((v) => !v)}
-              className="md:hidden p-2 text-ink-600 hover:text-brass-700 hover:bg-brass-200/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700"
+              className="p-2 text-ink-600 transition-colors hover:text-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 md:hidden"
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav"
               aria-label={
@@ -154,20 +165,26 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
-            className="md:hidden bg-bone-50 border-b border-brass-500/35 shadow-lg"
+            className="border-b border-ink-950 bg-paper-50 shadow-lg md:hidden"
           >
-            <div className="px-4 py-3 flex flex-col gap-1">
-              {NAV_LINKS.map((link) => (
+            <div className="flex flex-col px-5 py-2 sm:px-8">
+              {NAV_LINKS.map((link, i) => (
                 <button
                   key={link.href}
                   onClick={() => scrollTo(link.href)}
                   className={cn(
-                    "px-3 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] border-l-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700",
+                    "t-label ed-row flex items-center gap-3 py-4 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700",
                     activeSection === link.href
-                      ? "text-brass-700 border-brass-500 bg-brass-200/30"
-                      : "text-ink-600 border-transparent hover:text-ink-900 hover:bg-bone-200",
+                      ? "text-jade-700"
+                      : "text-ink-600 hover:text-ink-950",
                   )}
                 >
+                  <span
+                    aria-hidden="true"
+                    className="tabular-nums text-ink-300"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                   {link.label}
                 </button>
               ))}

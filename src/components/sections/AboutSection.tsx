@@ -1,14 +1,14 @@
 "use client";
 
-import { Code2, Database, Zap, Download, MapPin } from "lucide-react";
+import { Code2, Database, Zap, Download } from "lucide-react";
 import SectionWrapper, { SectionHeading } from "@/components/ui/SectionWrapper";
 import { SITE_CONFIG } from "@/lib/constants";
 
 const stats = [
-  { value: "7+", label: "Years Experience" },
+  { value: "7+", label: "Years" },
   { value: "3", label: "Industries" },
-  { value: "85%", label: "Support Query Reduction" },
-  { value: "MSc", label: "Data Science & AI" },
+  { value: "85%", label: "Fewer queries" },
+  { value: "MSc", label: "DS & AI" },
 ];
 
 const highlights = [
@@ -34,96 +34,75 @@ const highlights = [
 
 export default function AboutSection() {
   return (
-    <SectionWrapper id="about" className="bg-bone-200">
-      <div className="grid lg:grid-cols-2 gap-16 items-center">
-        {/* ── Left: Copy ──────────────────────────────────────────── */}
+    <SectionWrapper id="about">
+      <SectionHeading
+        index={1}
+        label="About"
+        title="Building production systems that scale."
+        aside={SITE_CONFIG.location}
+      />
+
+      <div className="ed-grid">
+        {/* Left gutter: the CV link sits in the margin, not under the copy */}
         <div>
-          <SectionHeading
-            eyebrow="About Me"
-            title="Building production systems that scale"
-          />
-
-          <p className="text-ink-700 leading-relaxed mb-4">
-            I&apos;m a Senior Software Developer with 4+ years&apos; experience
-            building event-driven, production systems across retail and
-            enterprise settings. I specialise in distributed messaging and .NET
-            microservices on Azure, with a strong eye for performance,
-            observability, and clean system design.
-          </p>
-          <p className="text-ink-700 leading-relaxed mb-6">
-            I hold an MSc in Data Science &amp; Artificial Intelligence from
-            Newcastle University (Distinction), which informs my approach to
-            building intelligent, data-driven systems which ranges from
-            ML-powered recommendation engines to real-time analytics pipelines.
-          </p>
-
-          <div className="flex items-center gap-2 text-ink-500 text-sm mb-8">
-            <MapPin size={14} aria-hidden="true" />
-            <span>{SITE_CONFIG.location}</span>
-          </div>
-
           <a
             href="/cv/CV_Aulia_Zulkarneidi.pdf"
             download
-            className="inline-flex items-center gap-2.5 px-6 py-3 text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-ink-800 bg-transparent border border-ink-400 hover:border-brass-600 hover:text-brass-700 hover:bg-brass-200/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-700 focus-visible:ring-offset-2"
+            className="t-label group inline-flex items-center gap-2 border-b border-ink-400 pb-1.5 text-ink-700 transition-colors hover:border-jade-600 hover:text-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2"
           >
-            <Download size={15} aria-hidden="true" />
+            <Download size={12} aria-hidden="true" />
             Download CV
           </a>
         </div>
 
-        {/* ── Right: Stats + Feature cards ────────────────────────── */}
-        <div className="space-y-6">
-          {/* Stats grid */}
-          <div className="grid grid-cols-2 gap-4" aria-label="Key statistics">
-            {/* One material, one accent. The old version gave each tile its own
-                hue, which read as decoration rather than hierarchy. */}
+        {/* Content column */}
+        <div>
+          {/* Lead paragraph, set larger than the rest — an editorial drop-in */}
+          <p className="max-w-2xl font-serif text-xl leading-snug text-ink-800 sm:text-2xl">
+            I&apos;m a Senior Software Developer with 7+ years&apos; experience
+            building event-driven, production systems across retail and
+            enterprise settings.
+          </p>
+          <p className="mt-6 max-w-2xl leading-relaxed text-ink-600">
+            I specialise in distributed messaging and .NET microservices on
+            Azure, with a strong eye for performance, observability, and clean
+            system design. I hold an MSc in Data Science &amp; Artificial
+            Intelligence from Newcastle University (Distinction), which informs
+            my approach to building intelligent, data-driven systems, from
+            ML-powered recommendation engines to real-time analytics pipelines.
+          </p>
+
+          {/* ── Figures on a rule, not in boxes ── */}
+          <dl className="mt-16 grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-4">
             {stats.map((stat) => (
-              <div
-                key={stat.label}
-                className="relative bg-bone-50 p-5 border border-bone-400 border-t-2 border-t-brass-500 text-center"
-              >
-                <span
-                  className="deco-corner top-2 right-2 text-brass-500/60"
-                  aria-hidden="true"
-                />
-                <p
-                  className="font-display text-4xl text-brass-600 mb-1"
-                  aria-label={`${stat.value} ${stat.label}`}
-                >
-                  {stat.value}
-                </p>
-                <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-ink-500">
-                  {stat.label}
-                </p>
+              <div key={stat.label} className="border-t-2 border-ink-950 pt-4">
+                <dd className="t-figure text-jade-700">{stat.value}</dd>
+                <dt className="t-label mt-3 text-ink-500">{stat.label}</dt>
               </div>
             ))}
-          </div>
+          </dl>
 
-          {/* Feature highlights */}
-          <div className="space-y-3">
+          {/* ── Highlights as hairline rows ── */}
+          <ul className="mt-20">
             {highlights.map((item) => (
-              <div
+              <li
                 key={item.title}
-                className="flex items-start gap-4 bg-bone-50 p-4 border border-bone-400"
+                className="ed-row grid gap-3 py-7 sm:grid-cols-[auto_1fr] sm:gap-7"
               >
-                <div
-                  className="shrink-0 w-10 h-10 flex items-center justify-center bg-ink-900 text-brass-300"
+                <item.icon
+                  size={20}
                   aria-hidden="true"
-                >
-                  <item.icon size={18} />
-                </div>
+                  className="mt-1 shrink-0 text-jade-600"
+                />
                 <div>
-                  <h3 className="font-display text-base text-ink-900">
-                    {item.title}
-                  </h3>
-                  <p className="text-ink-600 text-sm mt-1 leading-relaxed">
+                  <h3 className="t-sub text-ink-950">{item.title}</h3>
+                  <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink-600">
                     {item.description}
                   </p>
                 </div>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </div>
     </SectionWrapper>

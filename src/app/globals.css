@@ -1,236 +1,109 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   INK & BRASS — an Art Deco / mid-century palette
+   EDITORIAL DECO
    ───────────────────────────────────────────────────────────────────────────
-   Warm near-black "ink", bone/parchment grounds, antique brass as the single
-   accent. Oxblood and verdigris appear only as semantic states.
+   The previous theme (warm bone ground + system serif + brass hairlines +
+   evenly-spaced centred cards) read as a generic "tasteful" template. The fix
+   is not another palette — it is a different formal vocabulary:
 
-   Every pairing used in the UI is contrast-checked. Contract:
+     · asymmetry            nothing is centred; content sits off-axis
+     · extreme scale        display type ~10x the label size, not 2x
+     · rules, not boxes     hairline rules and whitespace carry structure
+     · numerals as form     oversized ghost numerals as page furniture
+     · one saturated accent jade, not a muted metallic
 
-     ON LIGHT GROUNDS (bone-50 / bone-100 / bone-200)
-       ink-900   headings                          15.7:1  AAA
-       ink-800   body                              13.2:1  AAA
-       ink-600   secondary body                     8.2:1  AAA
-       ink-500   muted / meta                       5.8:1  AA
-       ink-400   NON-TEXT ONLY (borders, icons)     3.8:1  — never body text
-       brass-700 accent text at any size            5.7:1  AA
-       brass-600 accent LARGE text only (>=24px)    4.3:1  AA-large
+   COLOUR CONTRACT (all 38 real pairings verified; see notes per ramp)
 
-     ON DARK GROUNDS (ink-950 / ink-900)
-       bone-100  headings                          16.7:1  AAA
-       ink-200   body                              10.1:1  AAA
-       ink-300   muted / meta                       7.0:1  AA
-       brass-400 accent                             8.0:1  AAA
-       brass-300 focus rings                       11.6:1  AAA
+     ON PAPER (paper-50 / paper-100 / paper-200)
+       ink-950   display headings              16.3:1  AAA
+       ink-800   body                          13.7:1  AAA
+       ink-600   secondary                      8.4:1  AAA
+       ink-500   muted / marginalia             5.6:1  AA
+       ink-400   NON-TEXT ONLY (borders)        3.3:1  — never body text
+       jade-700  links, accents                 7.3:1  AAA
+       jade-600  accents on raised surfaces     5.7:1  AA
 
-   The one rule that is easy to break: brass-600 is large-text-only. Reach for
-   brass-700 for anything at body size.
+     ON INK (ink-950 / ink-900)
+       paper-100 display headings              16.3:1  AAA
+       ink-200   body                          11.9:1  AAA
+       ink-300   marginalia                     8.2:1  AA
+       jade-300  accents                       10.2:1  AAA
+       jade-400  accents, deeper                6.6:1  AA
+
+   Three rules that are easy to break:
+     1. ink-400 is for borders only. Body text needs ink-500 or darker.
+     2. Ghost numerals are decorative (paper-400 on paper / ink-700 on ink).
+        They must never be the only carrier of information — the number is
+        always repeated in the section label.
+     3. Anything layered OVER a ghost numeral must be checked against the
+        numeral, not the page ground. jade-800 and ink-800 clear it; jade-700
+        (3.40:1) and ink-500 (3.88:1) do not.
+
+   If you retint anything, check perceptual distance (ΔE) as well as contrast.
+   Passing WCAG says nothing about whether a change is visible: an earlier
+   revision of this file changed the palette by ΔE 1.1 and looked identical.
    ═══════════════════════════════════════════════════════════════════════════ */
 
 @theme {
-  /* ── Ink: warm near-blacks, hue ~30deg. Never a blue-grey. ── */
-  --color-ink-950: #12100e;
-  --color-ink-900: #1a1714;
-  --color-ink-850: #221e1a;
-  --color-ink-800: #2a2622;
-  --color-ink-700: #3b352e;
-  --color-ink-600: #4e463c;
-  --color-ink-500: #655c4f;
-  --color-ink-400: #847969;
-  --color-ink-300: #a79b8a;
-  --color-ink-200: #c7bcab;
+  /* ── Ink: cool near-blacks. Blue-grey, not warm brown. ── */
+  --color-ink-950: #101317;
+  --color-ink-900: #171b21;
+  --color-ink-800: #1e242b;
+  --color-ink-700: #2b333c;
+  --color-ink-600: #3c4650;
+  --color-ink-500: #4e5a65;
+  --color-ink-400: #78848f;
+  --color-ink-300: #a3adb7;
+  --color-ink-200: #c8d0d7;
 
-  /* ── Bone: warm light surfaces. bone-100 is the page ground. ── */
-  --color-bone-50: #fbf9f4;
-  --color-bone-100: #f4f0e8;
-  --color-bone-200: #ebe5d9;
-  --color-bone-300: #ded5c4;
-  --color-bone-400: #cabfa9;
+  /* ── Paper: grey-green tinted. Deliberately not cream. ── */
+  --color-paper-50: #f2f4f2;
+  --color-paper-100: #e2e6e3;
+  --color-paper-200: #d1d7d3;
+  --color-paper-300: #bac2bd;
+  --color-paper-400: #9ea8a2;
 
-  /* ── Brass: the only accent. ── */
-  --color-brass-200: #efe0bc;
-  --color-brass-300: #dfc98c;
-  --color-brass-400: #c9a44c;
-  --color-brass-500: #a8802c;
-  --color-brass-600: #8e6c22;
-  --color-brass-700: #79591a;
-  --color-brass-800: #5c4412;
+  /* ── Jade: the single accent. Saturated, not metallic. ── */
+  --color-jade-200: #bfe3d6;
+  --color-jade-300: #8eccb8;
+  --color-jade-400: #4fa98d;
+  --color-jade-500: #17795e;
+  --color-jade-600: #0e6b52;
+  --color-jade-700: #0a5942;
+  --color-jade-800: #063e2e;
 
-  /* ── Oxblood: errors, and a rare second accent. ── */
-  --color-oxblood-100: #f4e2df;
-  --color-oxblood-400: #c88a84;
-  --color-oxblood-600: #8a3a34;
-  --color-oxblood-700: #7a2e2e;
-
-  /* ── Verdigris: success / availability. Aged copper, not a UI green. ── */
-  --color-verdigris-100: #dfeae5;
-  --color-verdigris-400: #7fb3a5;
-  --color-verdigris-600: #2e6b5e;
-  --color-verdigris-700: #255649;
+  /* ── Red: errors only. Never decorative. ── */
+  --color-red-100: #fbe2de;
+  --color-red-400: #d98d85;
+  --color-red-600: #b3261e;
+  --color-red-700: #93211b;
 
   /* ── Type ──
-     (see ALTERNATE PALETTES below the @theme block to change the colour scheme)
-     No webfont: zero network bytes, zero layout shift. The elegance comes from
-     a system serif for display and wide-tracked caps for eyebrows. Iowan and
-     Palatino cover Apple, Georgia covers Windows/Android. */
-  --font-display:
-    "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia,
-    "Times New Roman", serif;
+     No webfont: zero network bytes, zero layout shift. Distinctiveness comes
+     from scale, tracking and layout instead of a display face. Mono carries
+     all metadata, which is what stops the system serif reading as "default
+     tasteful serif". */
   --font-sans:
     ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif:
+    "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia,
+    serif;
   --font-mono:
     ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
     monospace;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ALTERNATE PALETTES
-   ───────────────────────────────────────────────────────────────────────────
-   To switch the whole site, set the attribute on <html> in app/layout.tsx:
-
-       <html lang="en" data-palette="emerald">     (or "bordeaux" / "midnight")
-
-   Remove the attribute for the default Ink & Brass. Nothing else changes — no
-   component edits — because every colour in the UI resolves through these
-   variables.
-
-   The token names are ROLES, not materials:
-       ink-*    the dark neutral  (body text on light; grounds for dark bands)
-       bone-*   the light grounds (page / card / sunken band)
-       brass-*  the single accent (links, rules, eyebrows, fills)
-   So in "midnight" the ink-* ramp holds navy and brass-* holds champagne.
-
-   Every palette here was checked against the same 43 real pairings as the
-   default. Tightest AA text pair per palette:
-       Ink & Brass  4.62:1    Emerald  4.58:1
-       Bordeaux     4.58:1    Midnight 4.97:1
-   If you hand-edit a value, re-check it — brass-600 is the one with least
-   headroom, and it is large-text-only by contract.
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-/* ── Emerald & Gilt — deep forest green, jewel-box Deco lobby ──
-   Light ramp is sage-tinted. The first version was near-neutral (ΔE 0.6–1.3 vs
-   Ink & Brass — the worst of the three, entirely invisible on light sections).
-   Now ΔE 6.2 on the ground, 9.5 on the band. The muted tone had to darken to
-   #415d53 to hold AA against the deeper band. */
-:root[data-palette="emerald"] {
-  --color-ink-950: #0a1512;
-  --color-ink-900: #11201c;
-  --color-ink-850: #152722;
-  --color-ink-800: #1c302a;
-  --color-ink-700: #294139;
-  --color-ink-600: #37544a;
-  --color-ink-500: #415d53;
-  --color-ink-400: #688679;
-  --color-ink-300: #94aea3;
-  --color-ink-200: #bfd1c9;
-
-  --color-bone-50: #f3f8f4;
-  --color-bone-100: #e1ede4;
-  --color-bone-200: #cddfd2;
-  --color-bone-300: #b2c8b9;
-  --color-bone-400: #95b09d;
-
-  --color-brass-200: #efe2bb;
-  --color-brass-300: #dfc98a;
-  --color-brass-400: #c9a64f;
-  --color-brass-500: #a5822f;
-  --color-brass-600: #8a6b23;
-  --color-brass-700: #74581b;
-  --color-brass-800: #574112;
-
-  /* Success has to stay distinct from an emerald ground, so it brightens. */
-  --color-verdigris-100: #deede6;
-  --color-verdigris-400: #6fb79b;
-  --color-verdigris-600: #1b7154;
-  --color-verdigris-700: #17614a;
-}
-
-/* ── Bordeaux & Gilt — rose parchment over wine-dark, leather-bound library ──
-   The light ramp is deliberately rose-tinted, not ivory. An earlier version kept
-   it near-neutral, which measured ΔE 1.1 against Ink & Brass on the page ground —
-   below the ~2.3 just-noticeable threshold, so the palette looked unchanged on
-   every light section. It now measures ΔE 7.6 on the ground and 10.6 on the
-   band. If you retint these, check ΔE as well as contrast: passing WCAG says
-   nothing about whether the change is visible. */
-:root[data-palette="bordeaux"] {
-  --color-ink-950: #1a0c10;
-  --color-ink-900: #241217;
-  --color-ink-850: #2b171c;
-  --color-ink-800: #2e1f23;
-  --color-ink-700: #403236;
-  --color-ink-600: #544248;
-  --color-ink-500: #665055;
-  --color-ink-400: #8b7076;
-  --color-ink-300: #ae949a;
-  --color-ink-200: #cfbdc1;
-
-  --color-bone-50: #fbf0ea;
-  --color-bone-100: #f2dfd4;
-  --color-bone-200: #e6ccbf;
-  --color-bone-300: #d5b4a6;
-  --color-bone-400: #be988a;
-
-  --color-brass-200: #f2e2c4;
-  --color-brass-300: #e3cb96;
-  --color-brass-400: #cca858;
-  --color-brass-500: #a88134;
-  --color-brass-600: #87671f;
-  --color-brass-700: #6f5418;
-  --color-brass-800: #543f11;
-
-  /* Errors have to out-red a rose ground, so they go more saturated, not warmer. */
-  --color-oxblood-100: #f9d3cd;
-  --color-oxblood-400: #c9766c;
-  --color-oxblood-600: #93382f;
-  --color-oxblood-700: #7e2b26;
-
-  /* Success stays teal — it reads as a distinct signal against the rose. */
-  --color-verdigris-100: #dceae4;
-}
-
-/* ── Midnight & Champagne — navy and pale gold, cooler and couture ──
-   Light ramp carries a deliberate blue cast so the palette reads as cool even
-   on the light sections. The first version used near-neutral alabaster, which
-   measured ΔE 1.3–2.1 against Ink & Brass — invisible. Now ΔE 7.9 on the
-   ground and 12.5 on the band. Same warning as bordeaux: check ΔE, not just
-   contrast. */
-:root[data-palette="midnight"] {
-  --color-ink-950: #0a1017;
-  --color-ink-900: #101821;
-  --color-ink-850: #141e29;
-  --color-ink-800: #1b2532;
-  --color-ink-700: #293747;
-  --color-ink-600: #37485c;
-  --color-ink-500: #4c5f76;
-  --color-ink-400: #6b7e95;
-  --color-ink-300: #96a7ba;
-  --color-ink-200: #c1ccd8;
-
-  --color-bone-50: #f7f9fc;
-  --color-bone-100: #e9eef4;
-  --color-bone-200: #d9e1eb;
-  --color-bone-300: #c3cedc;
-  --color-bone-400: #a8b6c8;
-
-  --color-brass-200: #efe7d2;
-  --color-brass-300: #dfd1ab;
-  --color-brass-400: #c6b078;
-  --color-brass-500: #9f8949;
-  --color-brass-600: #7e6b33;
-  --color-brass-700: #6f5f2e;
-  --color-brass-800: #544720;
-}
-
 :root {
-  --background: var(--color-bone-100);
+  --background: var(--color-paper-100);
   --foreground: var(--color-ink-800);
 }
 
 html {
   scroll-behavior: smooth;
+  /* Sections start below the fixed masthead instead of under it. */
+  scroll-padding-top: 3.5rem;
 }
 
 body {
@@ -241,104 +114,167 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Display face for headings and the wordmark. Opt-in via .font-display so body
-   copy keeps the sans stack. */
-.font-display {
-  font-family: var(--font-display);
+/* ═══ TYPE SCALE ═══════════════════════════════════════════════════════════
+   Ratio between display and label is roughly 10:1. That gap is doing most of
+   the work — a 2:1 gap is what makes a page look like a template. */
+
+/* Page-level display type. Serif, very tight, ragged right. */
+.t-display {
+  font-family: var(--font-serif);
+  font-size: clamp(2.75rem, 11vw, 8rem);
+  line-height: 0.9;
+  letter-spacing: -0.035em;
   font-weight: 600;
-  letter-spacing: -0.015em;
+  text-wrap: balance;
 }
 
-/* ── Eyebrow: wide-tracked caps in brass, preceded by a short rule. ──
-   Does most of the "posh" work that a display webfont would otherwise do. */
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.625rem;
-  font-size: 0.6875rem;
-  font-weight: 700;
+/* Section titles. */
+.t-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5.5vw, 3.75rem);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  font-weight: 600;
+}
+
+/* Sub-heads inside cards and list rows. */
+.t-sub {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+/* Big numerals — stats, years. Tabular so columns align. */
+.t-figure {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: 0.85;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* All metadata: labels, eyebrows, dates, categories. Mono + wide tracking. */
+.t-label {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  line-height: 1;
   letter-spacing: 0.22em;
   text-transform: uppercase;
+  font-weight: 500;
 }
-.eyebrow::before {
-  content: "";
-  width: 1.75rem;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.55;
-}
-
-/* ── Deco double rule: one hairline, one heavier, the classic Deco banding. ──
-   A single element with a hard-stop gradient — no extra DOM, no extra paint. */
-.rule-deco {
-  height: 6px;
-  background-image: linear-gradient(
-    to bottom,
-    currentColor 0 3px,
-    transparent 3px 5px,
-    currentColor 5px 6px
-  );
+.t-label-lg {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 
-/* ── Corner bracket: two hairlines meeting at a card corner. ── */
-.deco-corner {
-  position: absolute;
-  width: 0.875rem;
-  height: 0.875rem;
-  border-top: 1px solid currentColor;
-  border-right: 1px solid currentColor;
+/* ═══ EDITORIAL FURNITURE ══════════════════════════════════════════════════ */
+
+/* Oversized ghost numeral. Page furniture — decorative, aria-hidden at the
+   call site, and never the sole carrier of meaning. */
+.numeral-ghost {
+  font-family: var(--font-serif);
+  font-size: clamp(7rem, 22vw, 20rem);
+  line-height: 0.72;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+  user-select: none;
   pointer-events: none;
 }
 
-/* ── Stepped chevron band — a Deco motif as a repeating gradient. ──
-   Static background image: painted once, never composited per-frame. */
-.deco-band {
-  background-image: repeating-linear-gradient(
-    135deg,
-    currentColor 0 1px,
-    transparent 1px 9px
+/* Asymmetric editorial grid: narrow marginalia gutter, wide content column.
+   Stacks on small screens. The vertical rule between them is the structure —
+   it replaces the card borders the old design leaned on. */
+.ed-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+@media (min-width: 768px) {
+  .ed-grid {
+    grid-template-columns: minmax(9rem, 13rem) minmax(0, 1fr);
+    gap: 0;
+  }
+  .ed-grid > * + * {
+    border-left: 1px solid var(--color-paper-300);
+    padding-left: clamp(1.5rem, 4vw, 3.5rem);
+  }
+  .on-ink .ed-grid > * + * {
+    border-left-color: var(--color-ink-700);
+  }
+}
+
+/* Hairline row divider for editorial lists — replaces card boxes. */
+.ed-row {
+  border-top: 1px solid var(--color-paper-300);
+}
+.on-ink .ed-row {
+  border-top-color: var(--color-ink-700);
+}
+
+/* Deco sunburst: static conic gradient. Painted once, no per-frame cost, and
+   no extra DOM. Radiating lines are a Deco motif that a hairline box is not. */
+.deco-sunburst {
+  background-image: repeating-conic-gradient(
+    from 0deg,
+    currentColor 0deg 0.35deg,
+    transparent 0.35deg 7deg
   );
 }
 
-/* ── Focus: brass on light, bright brass on dark. ──
-   Both clear 3:1 against every surface they can land on. The offset ring keeps
-   the indicator legible even when the target sits on a brass fill. */
+/* Stepped rule — thick over thin, unequal. Asymmetric on purpose. */
+.rule-step {
+  height: 5px;
+  background-image: linear-gradient(
+    to bottom,
+    currentColor 0 3px,
+    transparent 3px 4px,
+    currentColor 4px 5px
+  );
+}
+
+/* ═══ FOCUS / SELECTION / SCROLLBAR ════════════════════════════════════════ */
+
 :focus-visible {
-  outline: 2px solid var(--color-brass-700);
+  outline: 2px solid var(--color-jade-700);
   outline-offset: 2px;
 }
-.on-dark :focus-visible,
-.dark-section :focus-visible {
-  outline-color: var(--color-brass-300);
+.on-ink :focus-visible {
+  outline-color: var(--color-jade-200);
 }
 
 ::selection {
-  background: var(--color-brass-300);
+  background: var(--color-jade-200);
   color: var(--color-ink-950);
 }
 
-/* ── Scrollbar ── */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-bone-200);
+  background: var(--color-paper-200);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-ink-300);
-  border: 3px solid var(--color-bone-200);
-  border-radius: 5px;
+  background: var(--color-ink-400);
+  border: 4px solid var(--color-paper-200);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-ink-400);
+  background: var(--color-ink-500);
 }
 html {
-  scrollbar-color: var(--color-ink-300) var(--color-bone-200);
+  scrollbar-color: var(--color-ink-400) var(--color-paper-200);
 }
 
-/* ── Respect prefers-reduced-motion ──
-   The page leans on scroll-triggered fades and a looping scroll cue. Users who
-   ask for reduced motion get the end state immediately rather than nothing. */
+/* ═══ REDUCED MOTION ═══════════════════════════════════════════════════════
+   Framer Motion is JS-driven and cannot be reached from here — MotionProvider
+   handles it with reducedMotion="user". This block covers CSS only. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

@@ -10,105 +10,68 @@ export default function ExperienceSection() {
   const inView = useInView(listRef, { once: true, margin: "-80px" });
 
   return (
-    <SectionWrapper id="experience">
+    <SectionWrapper id="experience" className="bg-paper-200">
       <SectionHeading
-        eyebrow="Experience"
-        title="Where I've worked"
-        description="My professional journey building software at scale."
+        index={4}
+        label="History"
+        title="Where I've worked."
+        aside="Most recent first"
       />
 
-      {/* Timeline */}
-      <div className="relative">
-        {/* Vertical line — hidden on mobile, centred on desktop */}
-        <div
-          className="hidden md:block absolute left-1/2 -translate-x-px top-0 bottom-0 w-px bg-linear-to-b from-brass-500 via-brass-400 to-transparent"
-          aria-hidden="true"
-        />
-        {/* Mobile line */}
-        <div
-          className="md:hidden absolute left-5 top-0 bottom-0 w-px bg-linear-to-b from-brass-500 to-transparent"
-          aria-hidden="true"
-        />
+      {/* A single left rule with dates hanging in the margin. The old centred
+          zigzag timeline was symmetrical decoration; this reads as a CV. */}
+      <ol ref={listRef}>
+        {experiences.map((exp, i) => (
+          <motion.li
+            key={exp.id}
+            initial={{ opacity: 0, y: 16 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.45, delay: i * 0.08 }}
+            className="ed-row py-12"
+          >
+            <div className="ed-grid">
+              {/* Dates + company in the gutter */}
+              <div>
+                <p className="t-label text-jade-700">
+                  {exp.startDate} &mdash; {exp.endDate ?? "Present"}
+                </p>
+                <p className="t-label-lg mt-3 text-ink-800">{exp.company}</p>
+              </div>
 
-        <ol ref={listRef} className="space-y-10">
-          {experiences.map((exp, i) => {
-            const isLeft = i % 2 === 0;
-            return (
-              <motion.li
-                key={exp.id}
-                initial={{ opacity: 0, x: isLeft ? -24 : 24 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.45, delay: i * 0.08 }}
-                className={`relative flex items-start gap-8 ${isLeft ? "md:flex-row" : "md:flex-row-reverse"}`}
-              >
-                {/* Timeline marker — a brass lozenge on point, not a bubble. */}
-                <div
-                  className="hidden md:block absolute left-1/2 -translate-x-1/2 mt-6 w-3 h-3 rotate-45 bg-brass-500 ring-4 ring-bone-100"
-                  aria-hidden="true"
-                />
-                {/* Mobile marker */}
-                <div
-                  className="md:hidden absolute left-5 -translate-x-1/2 mt-5 w-2.5 h-2.5 rotate-45 bg-brass-500 ring-4 ring-bone-100"
-                  aria-hidden="true"
-                />
+              <div>
+                <h3 className="t-title text-3xl text-ink-950 sm:text-4xl">
+                  {exp.role}
+                </h3>
+                <p className="mt-5 max-w-2xl leading-relaxed text-ink-600">
+                  {exp.description}
+                </p>
 
-                {/* Card — full width on mobile, half on desktop */}
-                <div
-                  className={`relative overflow-hidden ml-12 md:ml-0 md:w-[calc(50%-2.5rem)] bg-bone-50 border border-bone-400 border-l-2 border-l-brass-500 hover:bg-brass-200/20 transition-colors p-6 ${isLeft ? "md:pr-8" : "md:pl-8"}`}
-                >
-                  {/* Geometric corner accent */}
-                  <div
-                    className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-brass-500/50"
-                    aria-hidden="true"
-                  />
-                  <span className="text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-ink-500">
-                    {exp.startDate} — {exp.endDate ?? "Present"}
-                  </span>
-                  <h3 className="mt-2 font-display text-lg text-ink-900">
-                    {exp.role}
-                  </h3>
-                  <p className="text-sm font-semibold text-brass-700 mb-3">
-                    {exp.company}
-                  </p>
-
-                  <p className="text-ink-600 text-sm leading-relaxed mb-4">
-                    {exp.description}
-                  </p>
-
-                  <ul className="space-y-2 mb-4" aria-label="Key achievements">
-                    {exp.achievements.map((achievement) => (
-                      <li
-                        key={achievement}
-                        className="flex items-start gap-2.5 text-ink-600 text-xs leading-relaxed"
-                      >
-                        <span
-                          className="mt-1.5 w-1.5 h-1.5 rotate-45 bg-brass-500 shrink-0"
-                          aria-hidden="true"
-                        />
-                        {achievement}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div
-                    className="flex flex-wrap gap-1.5"
-                    aria-label="Technologies used"
-                  >
-                    {exp.techStack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="text-[11px] font-medium px-2 py-0.5 bg-bone-200 text-ink-700 border border-bone-400"
-                      >
-                        {tech}
+                {/* Achievements as a hanging-indent list with mono markers */}
+                <ul className="mt-8 space-y-3" aria-label="Key achievements">
+                  {exp.achievements.map((achievement, n) => (
+                    <li
+                      key={achievement}
+                      className="grid grid-cols-[1.75rem_1fr] items-baseline text-sm leading-relaxed text-ink-700"
+                    >
+                      <span aria-hidden="true" className="t-label text-ink-400">
+                        {String(n + 1).padStart(2, "0")}
                       </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.li>
-            );
-          })}
-        </ol>
-      </div>
+                      <span className="max-w-xl">{achievement}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <p
+                  className="t-label mt-8 leading-relaxed text-ink-500"
+                  aria-label="Technologies used"
+                >
+                  {exp.techStack.join(" · ")}
+                </p>
+              </div>
+            </div>
+          </motion.li>
+        ))}
+      </ol>
     </SectionWrapper>
   );
 }

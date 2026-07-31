@@ -5,15 +5,16 @@ import { motion, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 // ─── SectionWrapper ──────────────────────────────────────────────────────────
-// Applies consistent vertical padding, max-width, and a scroll-triggered
-// fade-in animation to every section on the page.
+// Vertical rhythm, max-width, and a scroll-triggered fade for every section.
+// `on-ink` is set by dark sections so the CSS in globals.css can flip rule and
+// focus-ring colours without every child needing an `inverted` prop.
 
 interface SectionWrapperProps {
   id: string;
   children: React.ReactNode;
-  /** Applied to the outer <section> element — use for background overrides */
+  /** Outer <section> — background overrides go here */
   className?: string;
-  /** Applied to the inner constrained container */
+  /** Inner constrained container */
   innerClassName?: string;
 }
 
@@ -27,12 +28,19 @@ export default function SectionWrapper({
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id={id} ref={ref} className={cn("py-20 lg:py-28", className)}>
+    <section
+      id={id}
+      ref={ref}
+      className={cn("relative overflow-hidden py-24 lg:py-36", className)}
+    >
       <motion.div
-        initial={{ opacity: 0, y: 28 }}
+        initial={{ opacity: 0, y: 24 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.55, ease: "easeOut" }}
-        className={cn("max-w-6xl mx-auto px-4 sm:px-6 lg:px-8", innerClassName)}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className={cn(
+          "relative mx-auto max-w-6xl px-5 sm:px-8 lg:px-12",
+          innerClassName,
+        )}
       >
         {children}
       </motion.div>
@@ -41,64 +49,104 @@ export default function SectionWrapper({
 }
 
 // ─── SectionHeading ───────────────────────────────────────────────────────────
-// Reusable heading block used at the top of every section.
+// The editorial masthead used at the top of every section:
+//
+//   ┌ 03 ──────────────────────────────────────────────
+//   │  PROJECTS   │  Things I've
+//   │  ─────────  │  built.
+//   │  6 shipped  │
+//   └──────────────────────────────────────────────────
+//
+// Asymmetric, left-aligned, structured by a vertical rule instead of a box,
+// with an oversized ghost numeral bleeding off the top-left corner.
 
 interface SectionHeadingProps {
-  eyebrow?: string;
+  /** Section number, rendered as oversized page furniture */
+  index: number;
+  label: string;
   title: string;
+  /** Optional short line in the left gutter, under the label */
+  aside?: string;
   description?: string;
-  centered?: boolean;
-  /** Switch to light-on-dark colours for dark-background sections */
+  /** Light-on-dark variant for ink-ground sections */
   inverted?: boolean;
 }
 
 export function SectionHeading({
-  eyebrow,
+  index,
+  label,
   title,
+  aside,
   description,
-  centered = false,
   inverted = false,
 }: SectionHeadingProps) {
+  const num = String(index).padStart(2, "0");
+
   return (
-    <div className={cn("mb-12 lg:mb-16", centered && "text-center")}>
-      {eyebrow && (
-        <p
-          className={cn(
-            "eyebrow mb-4",
-            inverted ? "text-brass-400" : "text-brass-700",
-          )}
-        >
-          {eyebrow}
-        </p>
-      )}
-      <h2
+    <header className="relative mb-16 lg:mb-24">
+      {/* Ghost numeral — decorative only; the real number is repeated in the
+          label below for anyone who can't see it. paper-400 rather than
+          paper-300 so it survives on the tinted (paper-200) sections too,
+          where paper-300 measured 1.25:1 and disappeared. */}
+      <span
+        aria-hidden="true"
         className={cn(
-          "font-display text-3xl lg:text-[2.6rem] lg:leading-[1.1]",
-          inverted ? "text-bone-100" : "text-ink-900",
+          "numeral-ghost absolute -top-10 -left-6 -z-10 select-none sm:-top-16 sm:-left-10",
+          inverted ? "text-ink-700" : "text-paper-400",
         )}
       >
-        {title}
-      </h2>
-      {/* Deco double rule — the banding that sits under a Deco masthead. */}
-      <div
-        className={cn(
-          "rule-deco w-20 mt-5",
-          centered && "mx-auto",
-          inverted ? "text-brass-400" : "text-brass-500",
-        )}
-        aria-hidden="true"
-      />
-      {description && (
-        <p
-          className={cn(
-            "mt-5 text-lg leading-relaxed",
-            centered && "max-w-2xl mx-auto",
-            inverted ? "text-ink-200" : "text-ink-600",
+        {num}
+      </span>
+
+      <div className="ed-grid">
+        {/* Left gutter: label + aside */}
+        <div className="pt-1">
+          {/* jade-800 / ink-800, not the lighter tones: both of these sit on
+              top of the ghost numeral, so their effective background is
+              paper-400 (ink-700 when inverted), not the page ground. jade-700
+              measured 3.40:1 there and ink-500 3.88:1 — both failed AA. */}
+          <p
+            className={cn(
+              "t-label",
+              inverted ? "text-jade-300" : "text-jade-800",
+            )}
+          >
+            {num} / {label}
+          </p>
+          {aside && (
+            <p
+              className={cn(
+                "mt-4 max-w-52 text-sm leading-relaxed",
+                inverted ? "text-ink-200" : "text-ink-800",
+              )}
+            >
+              {aside}
+            </p>
           )}
-        >
-          {description}
-        </p>
-      )}
-    </div>
+        </div>
+
+        {/* Content column: the title, very large */}
+        <div>
+          <h2
+            className={cn(
+              "t-title",
+              inverted ? "text-paper-100" : "text-ink-950",
+            )}
+          >
+            {title}
+          </h2>
+          {description && (
+            <p
+              className={cn(
+                "mt-6 max-w-2xl text-lg leading-relaxed",
+                inverted ? "text-ink-200" : "text-ink-600",
+              )}
+            >
+              {description}
+            </p>
+          )}
+        </div>
+      </div>
+    </header>
   );
 }
