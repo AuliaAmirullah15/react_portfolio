@@ -45,7 +45,8 @@ export default function HeroSection() {
         className="absolute inset-0 opacity-[0.04]"
         style={{
           backgroundImage:
-            "radial-gradient(circle, #12100E 1px, transparent 1px)",
+            // var(), not a literal, so the dot grid follows the active palette.
+            "radial-gradient(circle, var(--color-ink-950) 1px, transparent 1px)",
           backgroundSize: "28px 28px",
         }}
         aria-hidden="true"

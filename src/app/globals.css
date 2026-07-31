@@ -70,6 +70,7 @@
   --color-verdigris-700: #255649;
 
   /* ── Type ──
+     (see ALTERNATE PALETTES below the @theme block to change the colour scheme)
      No webfont: zero network bytes, zero layout shift. The elegance comes from
      a system serif for display and wide-tracked caps for eyebrows. Iowan and
      Palatino cover Apple, Georgia covers Windows/Android. */
@@ -82,6 +83,145 @@
   --font-mono:
     ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
     monospace;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ALTERNATE PALETTES
+   ───────────────────────────────────────────────────────────────────────────
+   To switch the whole site, set the attribute on <html> in app/layout.tsx:
+
+       <html lang="en" data-palette="emerald">     (or "bordeaux" / "midnight")
+
+   Remove the attribute for the default Ink & Brass. Nothing else changes — no
+   component edits — because every colour in the UI resolves through these
+   variables.
+
+   The token names are ROLES, not materials:
+       ink-*    the dark neutral  (body text on light; grounds for dark bands)
+       bone-*   the light grounds (page / card / sunken band)
+       brass-*  the single accent (links, rules, eyebrows, fills)
+   So in "midnight" the ink-* ramp holds navy and brass-* holds champagne.
+
+   Every palette here was checked against the same 43 real pairings as the
+   default. Tightest AA text pair per palette:
+       Ink & Brass  4.62:1    Emerald  4.58:1
+       Bordeaux     4.58:1    Midnight 4.97:1
+   If you hand-edit a value, re-check it — brass-600 is the one with least
+   headroom, and it is large-text-only by contract.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Emerald & Gilt — deep forest green, jewel-box Deco lobby ──
+   Light ramp is sage-tinted. The first version was near-neutral (ΔE 0.6–1.3 vs
+   Ink & Brass — the worst of the three, entirely invisible on light sections).
+   Now ΔE 6.2 on the ground, 9.5 on the band. The muted tone had to darken to
+   #415d53 to hold AA against the deeper band. */
+:root[data-palette="emerald"] {
+  --color-ink-950: #0a1512;
+  --color-ink-900: #11201c;
+  --color-ink-850: #152722;
+  --color-ink-800: #1c302a;
+  --color-ink-700: #294139;
+  --color-ink-600: #37544a;
+  --color-ink-500: #415d53;
+  --color-ink-400: #688679;
+  --color-ink-300: #94aea3;
+  --color-ink-200: #bfd1c9;
+
+  --color-bone-50: #f3f8f4;
+  --color-bone-100: #e1ede4;
+  --color-bone-200: #cddfd2;
+  --color-bone-300: #b2c8b9;
+  --color-bone-400: #95b09d;
+
+  --color-brass-200: #efe2bb;
+  --color-brass-300: #dfc98a;
+  --color-brass-400: #c9a64f;
+  --color-brass-500: #a5822f;
+  --color-brass-600: #8a6b23;
+  --color-brass-700: #74581b;
+  --color-brass-800: #574112;
+
+  /* Success has to stay distinct from an emerald ground, so it brightens. */
+  --color-verdigris-100: #deede6;
+  --color-verdigris-400: #6fb79b;
+  --color-verdigris-600: #1b7154;
+  --color-verdigris-700: #17614a;
+}
+
+/* ── Bordeaux & Gilt — rose parchment over wine-dark, leather-bound library ──
+   The light ramp is deliberately rose-tinted, not ivory. An earlier version kept
+   it near-neutral, which measured ΔE 1.1 against Ink & Brass on the page ground —
+   below the ~2.3 just-noticeable threshold, so the palette looked unchanged on
+   every light section. It now measures ΔE 7.6 on the ground and 10.6 on the
+   band. If you retint these, check ΔE as well as contrast: passing WCAG says
+   nothing about whether the change is visible. */
+:root[data-palette="bordeaux"] {
+  --color-ink-950: #1a0c10;
+  --color-ink-900: #241217;
+  --color-ink-850: #2b171c;
+  --color-ink-800: #2e1f23;
+  --color-ink-700: #403236;
+  --color-ink-600: #544248;
+  --color-ink-500: #665055;
+  --color-ink-400: #8b7076;
+  --color-ink-300: #ae949a;
+  --color-ink-200: #cfbdc1;
+
+  --color-bone-50: #fbf0ea;
+  --color-bone-100: #f2dfd4;
+  --color-bone-200: #e6ccbf;
+  --color-bone-300: #d5b4a6;
+  --color-bone-400: #be988a;
+
+  --color-brass-200: #f2e2c4;
+  --color-brass-300: #e3cb96;
+  --color-brass-400: #cca858;
+  --color-brass-500: #a88134;
+  --color-brass-600: #87671f;
+  --color-brass-700: #6f5418;
+  --color-brass-800: #543f11;
+
+  /* Errors have to out-red a rose ground, so they go more saturated, not warmer. */
+  --color-oxblood-100: #f9d3cd;
+  --color-oxblood-400: #c9766c;
+  --color-oxblood-600: #93382f;
+  --color-oxblood-700: #7e2b26;
+
+  /* Success stays teal — it reads as a distinct signal against the rose. */
+  --color-verdigris-100: #dceae4;
+}
+
+/* ── Midnight & Champagne — navy and pale gold, cooler and couture ──
+   Light ramp carries a deliberate blue cast so the palette reads as cool even
+   on the light sections. The first version used near-neutral alabaster, which
+   measured ΔE 1.3–2.1 against Ink & Brass — invisible. Now ΔE 7.9 on the
+   ground and 12.5 on the band. Same warning as bordeaux: check ΔE, not just
+   contrast. */
+:root[data-palette="midnight"] {
+  --color-ink-950: #0a1017;
+  --color-ink-900: #101821;
+  --color-ink-850: #141e29;
+  --color-ink-800: #1b2532;
+  --color-ink-700: #293747;
+  --color-ink-600: #37485c;
+  --color-ink-500: #4c5f76;
+  --color-ink-400: #6b7e95;
+  --color-ink-300: #96a7ba;
+  --color-ink-200: #c1ccd8;
+
+  --color-bone-50: #f7f9fc;
+  --color-bone-100: #e9eef4;
+  --color-bone-200: #d9e1eb;
+  --color-bone-300: #c3cedc;
+  --color-bone-400: #a8b6c8;
+
+  --color-brass-200: #efe7d2;
+  --color-brass-300: #dfd1ab;
+  --color-brass-400: #c6b078;
+  --color-brass-500: #9f8949;
+  --color-brass-600: #7e6b33;
+  --color-brass-700: #6f5f2e;
+  --color-brass-800: #544720;
 }
 
 :root {
