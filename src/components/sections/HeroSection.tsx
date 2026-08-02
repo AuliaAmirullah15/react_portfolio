@@ -46,7 +46,7 @@ export default function HeroSection() {
         // z-0, not -z-10: the content below is positioned and comes later in the
         // DOM, so it already paints on top. A negative z-index would drop this
         // behind any ancestor background (see the note in SectionWrapper).
-        className="deco-sunburst pointer-events-none absolute top-1/2 -right-1/3 z-0 aspect-square w-[130vw] -translate-y-1/2 text-jade-700/13 sm:-right-1/4 sm:w-[85vw]"
+        className="pointer-events-none absolute top-1/2 -right-1/3 z-0 aspect-square w-[130vw] -translate-y-1/2 text-jade-700/13 sm:-right-1/4 sm:w-[85vw]"
         // The mask fades the CENTRE as well as the rim. Radiating lines
         // converge to a dense knot at the origin; leaving that visible put a
         // busy patch behind the copy.

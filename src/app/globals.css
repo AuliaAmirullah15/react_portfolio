@@ -73,6 +73,20 @@
   --color-jade-700: #0a5942;
   --color-jade-800: #063e2e;
 
+  /* ── Brass: gold for the "How I work" icon tiles ──
+     The tiles are deep jade on a near-black ground, which means the FILL
+     cannot carry the shape: jade-700 measures only 2.24:1 against ink-950.
+     A gold hairline edge does the work instead (brass-400 vs ground 7.89:1),
+     with a gold glyph inside (brass-300 on jade-700, 5.11:1).
+     terra/ocean kept for accents elsewhere. ── */
+  --color-brass-300: #dfc98c;
+  --color-brass-400: #c9a44c;
+  --color-brass-600: #7f631c;
+  --color-terra-400: #d98b62;
+  --color-terra-600: #a8461f;
+  --color-ocean-400: #6aa8c6;
+  --color-ocean-600: #1d5f7e;
+
   /* ── Red: errors only. Never decorative. ── */
   --color-red-100: #fbe2de;
   --color-red-400: #d98d85;
