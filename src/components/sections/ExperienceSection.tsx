@@ -55,7 +55,7 @@ export default function ExperienceSection() {
                     >
                       <span
                         aria-hidden="true"
-                        className="t-label text-bord-400"
+                        className="t-label text-brass-600"
                       >
                         {String(n + 1).padStart(2, "0")}
                       </span>

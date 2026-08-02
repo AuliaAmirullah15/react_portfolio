@@ -65,7 +65,7 @@ export default function AboutSection() {
           <div className="relative max-w-2xl pl-12 sm:pl-16">
             <span
               aria-hidden="true"
-              className="absolute top-0 left-0 font-serif text-6xl leading-none text-brass-600 select-none sm:text-7xl"
+              className="absolute top-0 left-0 font-serif text-6xl leading-none text-jade-700 select-none sm:text-7xl"
             >
               &ldquo;
             </span>

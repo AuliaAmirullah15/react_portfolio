@@ -39,7 +39,24 @@ export default function HeroSection() {
       className="relative flex min-h-screen flex-col justify-center overflow-hidden pt-24 pb-20"
       aria-label="Introduction"
     >
-      <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-12">
+      {/* Ghost monogram — the same device as the section numerals, so it reads
+          as part of the system rather than a one-off flourish. paper-300, not
+          paper-400: the surname crosses it, and jade-700 measures 3.40:1 over
+          400 but 5.70:1 over 300. */}
+      <span
+        aria-hidden="true"
+        className="numeral-ghost pointer-events-none absolute top-1/2 -left-10 z-0 hidden -translate-y-1/2 text-paper-300 select-none md:block md:-left-16"
+      >
+        AZ
+      </span>
+
+      {/* Vertical slug on the outer edge — editorial furniture, real content,
+          hidden where there is no room for it. */}
+      <span className="t-label pointer-events-none absolute top-1/2 right-6 z-0 hidden -translate-y-1/2 text-ink-500 [writing-mode:vertical-rl] lg:block">
+        {SITE_CONFIG.title}
+      </span>
+
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-12">
         <div className="ed-grid">
           {/* ── Left gutter: the metadata block ── */}
           <div className="pt-2">
@@ -59,12 +76,12 @@ export default function HeroSection() {
               className="mt-6 space-y-3 text-sm"
             >
               <div>
-                <dt className="t-label text-ink-400">Based</dt>
+                <dt className="t-label text-ink-600">Based</dt>
                 <dd className="mt-1 text-ink-600">{SITE_CONFIG.location}</dd>
               </div>
               {SITE_CONFIG.openToWork && (
                 <div>
-                  <dt className="t-label text-ink-400">Status</dt>
+                  <dt className="t-label text-ink-600">Status</dt>
                   <dd className="mt-1 flex items-center gap-2 text-jade-700">
                     <span
                       aria-hidden="true"
@@ -100,7 +117,7 @@ export default function HeroSection() {
               aria-live="polite"
               aria-atomic="true"
             >
-              <span className="t-label shrink-0 text-ink-400">Currently</span>
+              <span className="t-label shrink-0 text-ink-600">Currently</span>
               <AnimatePresence mode="wait">
                 <motion.p
                   key={roleIndex}
