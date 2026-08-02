@@ -90,6 +90,7 @@
      is 1.87:1 there — an outline in it is invisible — so 400 is for dark
      grounds only (7.89:1 on ink, 5.64:1 on burgundy). */
   --color-brass-700: #695115;
+  --color-brass-200: #ecd9a4;
   --color-brass-300: #dfc98c;
   --color-brass-400: #c9a44c;
   --color-brass-600: #7f631c;
@@ -291,15 +292,18 @@ body {
      a light ground. The brackets are drawn as eight background gradients on
      one pseudo-element, so a frame costs no extra DOM. */
   .deco-frame {
+    /* --b drives both the border and the corner brackets, so one element can
+       retint the whole device: e.g. the jade stat boxes set it to brass-300,
+       because brass-600 on jade measures 1.47:1 and vanishes. */
+    --b: var(--color-brass-600);
     position: relative;
-    border: 1px solid var(--color-brass-600);
+    border: 1px solid var(--b);
   }
   .deco-frame::before {
     content: "";
     position: absolute;
     inset: 6px;
     pointer-events: none;
-    --b: var(--color-brass-600);
     --l: 11px;
     /* Top-left and bottom-right only — a diagonal pair reads as a deliberate
        Deco mark; all four corners read as a box. */
@@ -309,12 +313,8 @@ body {
       linear-gradient(var(--b), var(--b)) 100% 100% / var(--l) 1px no-repeat,
       linear-gradient(var(--b), var(--b)) 100% 100% / 1px var(--l) no-repeat;
   }
-  .on-ink .deco-frame,
-  .on-ink .deco-frame::before {
-    --b: var(--color-brass-400);
-  }
   .on-ink .deco-frame {
-    border-color: var(--color-brass-400);
+    --b: var(--color-brass-400);
   }
 
   /* Fine 45-degree hatching for a textured panel. Deliberately NOT the OS

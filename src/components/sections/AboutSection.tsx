@@ -48,9 +48,9 @@ export default function AboutSection() {
           <a
             href="/cv/CV_Aulia_Zulkarneidi.pdf"
             download
-            className="t-label group inline-flex items-center gap-2 pb-1.5 text-ink-700 transition-colors hover:border-jade-600 hover:text-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2"
+            className="t-label-lg group inline-flex items-center gap-2.5 pb-1.5 text-ink-800 transition-colors hover:border-jade-600 hover:text-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2"
           >
-            <Download size={12} aria-hidden="true" />
+            <Download size={15} aria-hidden="true" />
             Download CV
           </a>
         </div>
@@ -90,10 +90,10 @@ export default function AboutSection() {
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="deco-frame deco-texture px-5 py-6 text-center"
+                className="deco-frame bg-jade-700 px-5 py-7 text-center [--b:var(--color-brass-300)]"
               >
-                <dd className="t-figure text-jade-700">{stat.value}</dd>
-                <dt className="t-label mt-3 text-ink-600">{stat.label}</dt>
+                <dd className="t-figure text-brass-200">{stat.value}</dd>
+                <dt className="t-label mt-3 text-brass-300">{stat.label}</dt>
               </div>
             ))}
           </dl>
