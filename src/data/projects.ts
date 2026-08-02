@@ -62,7 +62,7 @@ export const projects: Project[] = [
     id: "activate-erp",
     title: "Activate ERP",
     description:
-      "Mobile-first ERP system for retail and distribution ranging from goods receiving, stocktaking, inventory, picking, and transfers. I architected and built the frontend layer from scratch with a single codebase targeting both App Store and Google Play which has features such as biometric auth, camera for photo upload, geolocation as a verification, and secure storage.",
+      "Mobile-first Entrprise Resource Planning system for retail and distribution ranging from goods receiving, stocktaking, inventory, picking, and transfers. I architected and built the frontend layer from scratch with a single codebase targeting both App Store and Google Play which has features such as biometric auth, camera for photo upload, geolocation as a verification, and secure storage.",
     techStack: [
       "Vue.js",
       "Quasar",
