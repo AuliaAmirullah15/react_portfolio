@@ -61,12 +61,14 @@ export default function ExperienceSection() {
                   ))}
                 </ul>
 
-                <p
-                  className="t-label mt-8 leading-relaxed text-ink-500"
+                <ul
+                  className="t-meta t-meta-list mt-8 text-ink-500"
                   aria-label="Technologies used"
                 >
-                  {exp.techStack.join(" · ")}
-                </p>
+                  {exp.techStack.map((tech) => (
+                    <li key={tech}>{tech}</li>
+                  ))}
+                </ul>
               </div>
             </div>
           </motion.li>

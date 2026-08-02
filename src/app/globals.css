@@ -118,133 +118,175 @@ body {
    Ratio between display and label is roughly 10:1. That gap is doing most of
    the work — a 2:1 gap is what makes a page look like a template. */
 
-/* Page-level display type. Serif, very tight, ragged right. */
-.t-display {
-  font-family: var(--font-serif);
-  font-size: clamp(2.75rem, 11vw, 8rem);
-  line-height: 0.9;
-  letter-spacing: -0.035em;
-  font-weight: 600;
-  text-wrap: balance;
-}
+/* Everything below lives in @layer components ON PURPOSE. Unlayered CSS beats
+   layered CSS in the cascade, so while these classes sat outside a layer they
+   silently overrode every Tailwind utility paired with them: `t-label
+   leading-relaxed` still computed line-height 1, and `t-sub text-2xl` still
+   computed 1.125rem. Inside `components`, `@layer utilities` wins, which is
+   what you expect when you add a utility next to one of these. */
+@layer components {
+  /* Page-level display type. Serif, very tight, ragged right. */
+  .t-display {
+    font-family: var(--font-serif);
+    font-size: clamp(2.75rem, 11vw, 8rem);
+    line-height: 0.9;
+    letter-spacing: -0.035em;
+    font-weight: 600;
+    text-wrap: balance;
+  }
 
-/* Section titles. */
-.t-title {
-  font-family: var(--font-serif);
-  font-size: clamp(2rem, 5.5vw, 3.75rem);
-  line-height: 0.98;
-  letter-spacing: -0.025em;
-  font-weight: 600;
-}
+  /* Section titles. */
+  .t-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 5.5vw, 3.75rem);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    font-weight: 600;
+  }
 
-/* Sub-heads inside cards and list rows. */
-.t-sub {
-  font-family: var(--font-serif);
-  font-size: 1.125rem;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-  font-weight: 600;
-}
+  /* Sub-heads inside cards and list rows. */
+  .t-sub {
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+  }
 
-/* Big numerals — stats, years. Tabular so columns align. */
-.t-figure {
-  font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  line-height: 0.85;
-  letter-spacing: -0.03em;
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-}
+  /* Big numerals — stats, years. Tabular so columns align. */
+  .t-figure {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    line-height: 0.85;
+    letter-spacing: -0.03em;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
 
-/* All metadata: labels, eyebrows, dates, categories. Mono + wide tracking. */
-.t-label {
-  font-family: var(--font-mono);
-  font-size: 0.625rem;
-  line-height: 1;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-.t-label-lg {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  line-height: 1.2;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-weight: 500;
-}
+  /* All metadata: labels, eyebrows, dates, categories. Mono + wide tracking. */
+  .t-label {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    line-height: 1;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .t-label-lg {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1.2;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
 
-/* ═══ EDITORIAL FURNITURE ══════════════════════════════════════════════════ */
+  /* Metadata that WRAPS — tech stacks, long runs. t-label is tuned for a single
+   short line: 0.22em tracking and line-height 1 make a wrapped run read as
+   huge word gaps stacked on touching lines. This trades tracking for leading. */
+  .t-meta {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1.65;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
 
-/* Oversized ghost numeral. Page furniture — decorative, aria-hidden at the
+  /* Even horizontal rhythm for those runs. Flex + gap rather than a joined
+   string, so separator spacing is symmetrical and wrapping breaks between
+   items rather than mid-run.
+   The dot is an ::after on every item BUT the last, so it travels with the
+   word it follows. As a ::before on the following item it wrapped with that
+   item instead, leaving lines that began "· LINUX". */
+  .t-meta-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 0.55rem;
+    row-gap: 0.3rem;
+  }
+  .t-meta-list > li:not(:last-child)::after {
+    content: "·";
+    margin-left: 0.55rem;
+    color: var(--color-ink-300);
+  }
+  .on-ink .t-meta-list > li:not(:last-child)::after {
+    color: var(--color-ink-600);
+  }
+
+  /* ═══ EDITORIAL FURNITURE ══════════════════════════════════════════════════ */
+
+  /* Oversized ghost numeral. Page furniture — decorative, aria-hidden at the
    call site, and never the sole carrier of meaning. */
-.numeral-ghost {
-  font-family: var(--font-serif);
-  font-size: clamp(7rem, 22vw, 20rem);
-  line-height: 0.72;
-  font-weight: 600;
-  letter-spacing: -0.05em;
-  font-variant-numeric: tabular-nums;
-  user-select: none;
-  pointer-events: none;
-}
+  .numeral-ghost {
+    font-family: var(--font-serif);
+    font-size: clamp(7rem, 22vw, 20rem);
+    line-height: 0.72;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    font-variant-numeric: tabular-nums;
+    user-select: none;
+    pointer-events: none;
+  }
 
-/* Asymmetric editorial grid: narrow marginalia gutter, wide content column.
+  /* Asymmetric editorial grid: narrow marginalia gutter, wide content column.
    Stacks on small screens. The vertical rule between them is the structure —
    it replaces the card borders the old design leaned on. */
-.ed-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  /* Above the ghost numeral. The numeral is absolutely positioned at z-0, and
+  .ed-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    /* Above the ghost numeral. The numeral is absolutely positioned at z-0, and
      positioned elements paint above non-positioned ones regardless of source
      order — so any content block that can sit under it has to be positioned
      and lifted, or the numeral covers it. */
-  position: relative;
-  z-index: 10;
-}
-@media (min-width: 768px) {
-  .ed-grid {
-    grid-template-columns: minmax(9rem, 13rem) minmax(0, 1fr);
-    gap: 0;
+    position: relative;
+    z-index: 10;
   }
-  .ed-grid > * + * {
-    border-left: 1px solid var(--color-paper-300);
-    padding-left: clamp(1.5rem, 4vw, 3.5rem);
+  @media (min-width: 768px) {
+    .ed-grid {
+      grid-template-columns: minmax(9rem, 13rem) minmax(0, 1fr);
+      gap: 0;
+    }
+    .ed-grid > * + * {
+      border-left: 1px solid var(--color-paper-300);
+      padding-left: clamp(1.5rem, 4vw, 3.5rem);
+    }
+    .on-ink .ed-grid > * + * {
+      border-left-color: var(--color-ink-700);
+    }
   }
-  .on-ink .ed-grid > * + * {
-    border-left-color: var(--color-ink-700);
-  }
-}
 
-/* Hairline row divider for editorial lists — replaces card boxes. */
-.ed-row {
-  border-top: 1px solid var(--color-paper-300);
-}
-.on-ink .ed-row {
-  border-top-color: var(--color-ink-700);
-}
+  /* Hairline row divider for editorial lists — replaces card boxes. */
+  .ed-row {
+    border-top: 1px solid var(--color-paper-300);
+  }
+  .on-ink .ed-row {
+    border-top-color: var(--color-ink-700);
+  }
 
-/* Deco sunburst: static conic gradient. Painted once, no per-frame cost, and
+  /* Deco sunburst: static conic gradient. Painted once, no per-frame cost, and
    no extra DOM. Radiating lines are a Deco motif that a hairline box is not. */
-.deco-sunburst {
-  background-image: repeating-conic-gradient(
-    from 0deg,
-    currentColor 0deg 0.35deg,
-    transparent 0.35deg 7deg
-  );
-}
+  .deco-sunburst {
+    background-image: repeating-conic-gradient(
+      from 0deg,
+      currentColor 0deg 0.35deg,
+      transparent 0.35deg 7deg
+    );
+  }
 
-/* Stepped rule — thick over thin, unequal. Asymmetric on purpose. */
-.rule-step {
-  height: 5px;
-  background-image: linear-gradient(
-    to bottom,
-    currentColor 0 3px,
-    transparent 3px 4px,
-    currentColor 4px 5px
-  );
-}
+  /* Stepped rule — thick over thin, unequal. Asymmetric on purpose. */
+  .rule-step {
+    height: 5px;
+    background-image: linear-gradient(
+      to bottom,
+      currentColor 0 3px,
+      transparent 3px 4px,
+      currentColor 4px 5px
+    );
+  }
+} /* end @layer components */
 
 /* ═══ FOCUS / SELECTION / SCROLLBAR ════════════════════════════════════════ */
 

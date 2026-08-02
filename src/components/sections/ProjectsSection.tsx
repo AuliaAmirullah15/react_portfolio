@@ -80,13 +80,17 @@ export default function ProjectsSection() {
                   {project.description}
                 </p>
 
-                {/* Tech as a mono run, not boxed chips */}
-                <p
-                  className="t-label mt-5 leading-relaxed text-ink-500"
+                {/* Tech as a mono run, not boxed chips. A real list rather than
+                    a joined string so wrapping breaks between items and the
+                    separators keep even spacing. */}
+                <ul
+                  className="t-meta t-meta-list mt-5 text-ink-500"
                   aria-label="Technologies used"
                 >
-                  {project.techStack.join(" · ")}
-                </p>
+                  {project.techStack.map((tech) => (
+                    <li key={tech}>{tech}</li>
+                  ))}
+                </ul>
 
                 {(project.githubUrl || project.liveUrl) && (
                   <div className="mt-6 flex items-center gap-6">
