@@ -78,10 +78,10 @@ export default function Header() {
             aria-label="Scroll to top"
           >
             {SITE_CONFIG.name}
-            <span className="text-jade-600" aria-hidden="true">
+            {/* <span className="text-jade-600" aria-hidden="true">
               {" "}
               &mdash;
-            </span>
+            </span> */}
           </button>
 
           {/* Desktop nav */}

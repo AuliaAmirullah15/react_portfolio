@@ -67,7 +67,7 @@ export default function HowIWorkSection() {
       {/* Numbered principles on hairlines. Previously six identical bordered
           cards with a coloured icon tile each — the most template-ish block on
           the page. */}
-      <ol ref={listRef} className="grid gap-x-14 lg:grid-cols-2">
+      <ol ref={listRef} className="relative z-10 grid gap-x-14 lg:grid-cols-2">
         {principles.map((principle, i) => (
           <motion.li
             key={principle.title}

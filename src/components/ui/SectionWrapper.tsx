@@ -88,10 +88,18 @@ export function SectionHeading({
           label below for anyone who can't see it. paper-400 rather than
           paper-300 so it survives on the tinted (paper-200) sections too,
           where paper-300 measured 1.25:1 and disappeared. */}
+      {/* z-0 with the content lifted to z-10 — NOT a negative z-index. With
+          -z-10 the numeral rendered only while the reveal animation was in
+          flight: an active transform/opacity on the wrapping motion.div creates
+          a stacking context, which the numeral could sit behind harmlessly.
+          Once Framer settled to `transform: none; opacity: 1` that stacking
+          context disappeared, so the numeral fell behind the nearest ancestor
+          background instead — invisible on every section that sets one
+          (bg-paper-200 / bg-ink-950), and fine on those that don't. */}
       <span
         aria-hidden="true"
         className={cn(
-          "numeral-ghost absolute -top-10 -left-6 -z-10 select-none sm:-top-16 sm:-left-10",
+          "numeral-ghost absolute -top-10 -left-6 z-0 select-none sm:-top-16 sm:-left-10",
           inverted ? "text-ink-700" : "text-paper-400",
         )}
       >

@@ -26,7 +26,7 @@ export default function ProjectsSection() {
 
       {/* Projects as numbered editorial entries. The image alternates side on
           wide screens so the page never settles into a repeating card grid. */}
-      <ol ref={listRef}>
+      <ol ref={listRef} className="relative z-10">
         {featured.map((project, i) => {
           const imageFirst = i % 2 === 0;
           return (

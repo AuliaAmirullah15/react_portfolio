@@ -196,6 +196,12 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
+  /* Above the ghost numeral. The numeral is absolutely positioned at z-0, and
+     positioned elements paint above non-positioned ones regardless of source
+     order — so any content block that can sit under it has to be positioned
+     and lifted, or the numeral covers it. */
+  position: relative;
+  z-index: 10;
 }
 @media (min-width: 768px) {
   .ed-grid {

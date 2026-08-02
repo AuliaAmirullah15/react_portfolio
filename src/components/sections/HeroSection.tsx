@@ -43,7 +43,10 @@ export default function HeroSection() {
           gradient: one paint, no per-frame cost, no extra DOM. ── */}
       <div
         aria-hidden="true"
-        className="deco-sunburst pointer-events-none absolute top-1/2 -right-1/3 -z-10 aspect-square w-[130vw] -translate-y-1/2 text-jade-700/13 sm:-right-1/4 sm:w-[85vw]"
+        // z-0, not -z-10: the content below is positioned and comes later in the
+        // DOM, so it already paints on top. A negative z-index would drop this
+        // behind any ancestor background (see the note in SectionWrapper).
+        className="deco-sunburst pointer-events-none absolute top-1/2 -right-1/3 z-0 aspect-square w-[130vw] -translate-y-1/2 text-jade-700/13 sm:-right-1/4 sm:w-[85vw]"
         // The mask fades the CENTRE as well as the rim. Radiating lines
         // converge to a dense knot at the origin; leaving that visible put a
         // busy patch behind the copy.
@@ -112,7 +115,7 @@ export default function HeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="mt-10 flex items-baseline gap-4 border-t border-ink-950 pt-4"
+              className="mt-10 flex items-baseline gap-4 pt-4"
               aria-live="polite"
               aria-atomic="true"
             >

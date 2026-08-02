@@ -20,7 +20,7 @@ export default function ExperienceSection() {
 
       {/* A single left rule with dates hanging in the margin. The old centred
           zigzag timeline was symmetrical decoration; this reads as a CV. */}
-      <ol ref={listRef}>
+      <ol ref={listRef} className="relative z-10">
         {experiences.map((exp, i) => (
           <motion.li
             key={exp.id}
