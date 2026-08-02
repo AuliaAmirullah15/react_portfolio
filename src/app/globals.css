@@ -79,13 +79,22 @@
      A gold hairline edge does the work instead (brass-400 vs ground 7.89:1),
      with a gold glyph inside (brass-300 on jade-700, 5.11:1).
      terra/ocean kept for accents elsewhere. ── */
+  /* Burgundy — the deep Experience ground, and an accent on light. */
+  --color-bord-200: #e8bdc5;
+  --color-bord-400: #c47b88;
+  --color-bord-600: #8f2740;
+  --color-bord-700: #761f34;
+  --color-bord-800: #591727;
+
+  /* brass-700 is the step for text and outlines on LIGHT grounds. brass-400
+     is 1.87:1 there — an outline in it is invisible — so 400 is for dark
+     grounds only (7.89:1 on ink, 5.64:1 on burgundy). */
+  --color-brass-700: #695115;
   --color-brass-300: #dfc98c;
   --color-brass-400: #c9a44c;
   --color-brass-600: #7f631c;
   --color-terra-400: #d98b62;
   --color-terra-600: #a8461f;
-  --color-ocean-400: #6aa8c6;
-  --color-ocean-600: #1d5f7e;
 
   /* ── Red: errors only. Never decorative. ── */
   --color-red-100: #fbe2de;
@@ -263,21 +272,91 @@ body {
       grid-template-columns: minmax(9rem, 13rem) minmax(0, 1fr);
       gap: 0;
     }
+    /* No dividing rule — the gutter is defined by space alone. Hairlines
+       between and around everything was the dominant texture of the page. */
     .ed-grid > * + * {
-      border-left: 1px solid var(--color-paper-300);
       padding-left: clamp(1.5rem, 4vw, 3.5rem);
-    }
-    .on-ink .ed-grid > * + * {
-      border-left-color: var(--color-ink-700);
     }
   }
 
-  /* Hairline row divider for editorial lists — replaces card boxes. */
+  /* Row separation by rhythm, not by rule. Entries are told apart by the
+     space around them and by the type hierarchy inside them. */
   .ed-row {
-    border-top: 1px solid var(--color-paper-300);
+    padding-block: clamp(2rem, 4vw, 3.25rem);
   }
-  .on-ink .ed-row {
-    border-top-color: var(--color-ink-700);
+
+  /* Gold frame with inner corner brackets — the Deco device from the brass
+     theme. brass-600 for the rule (4.50:1 on paper, clears the 3:1 a
+     perceivable boundary needs); brass-400 would be 1.87:1 and invisible on
+     a light ground. The brackets are drawn as eight background gradients on
+     one pseudo-element, so a frame costs no extra DOM. */
+  .deco-frame {
+    position: relative;
+    border: 1px solid var(--color-brass-600);
+  }
+  .deco-frame::before {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    pointer-events: none;
+    --b: var(--color-brass-600);
+    --l: 11px;
+    /* Top-left and bottom-right only — a diagonal pair reads as a deliberate
+       Deco mark; all four corners read as a box. */
+    background:
+      linear-gradient(var(--b), var(--b)) 0 0 / var(--l) 1px no-repeat,
+      linear-gradient(var(--b), var(--b)) 0 0 / 1px var(--l) no-repeat,
+      linear-gradient(var(--b), var(--b)) 100% 100% / var(--l) 1px no-repeat,
+      linear-gradient(var(--b), var(--b)) 100% 100% / 1px var(--l) no-repeat;
+  }
+  .on-ink .deco-frame,
+  .on-ink .deco-frame::before {
+    --b: var(--color-brass-400);
+  }
+  .on-ink .deco-frame {
+    border-color: var(--color-brass-400);
+  }
+
+  /* Fine 45-degree hatching for a textured panel. Deliberately NOT the OS
+     contour/grid motif from the UK Atlas hero — that is that project's
+     identity, and reusing it is what made the two sites read as siblings.
+     Low alpha so body text keeps its contrast: at the densest point the
+     effective ground is ~#cfd5d1, where ink-800 still measures 10:1. */
+  .deco-texture {
+    background-image: repeating-linear-gradient(
+      45deg,
+      color-mix(in srgb, var(--color-paper-400) 42%, transparent) 0 1px,
+      transparent 1px 7px
+    );
+  }
+
+  /* Hairline divider, kept for the Projects list where entries are long and
+     the space alone was not enough to tell them apart. */
+  .ed-divide + .ed-divide {
+    border-top: 1px solid var(--color-paper-400);
+  }
+
+  /* Drop cap for a section's opening paragraph. Classic posh editorial, and
+     it adds character without adding a single line. */
+  .drop-cap::first-letter {
+    float: left;
+    font-family: var(--font-serif);
+    font-size: 3.4em;
+    line-height: 0.78;
+    font-weight: 600;
+    padding-right: 0.09em;
+    padding-top: 0.06em;
+  }
+
+  /* A single brass lozenge — the only ornament, used ONCE per section under
+     the masthead, never repeated down a list. Repeating it would just be a
+     hairline by another name. */
+  .deco-lozenge {
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    rotate: 45deg;
+    background: currentColor;
   }
 
   /* Deco sunburst: static conic gradient. Painted once, no per-frame cost, and

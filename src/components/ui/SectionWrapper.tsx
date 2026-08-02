@@ -70,6 +70,9 @@ interface SectionHeadingProps {
   description?: string;
   /** Light-on-dark variant for ink-ground sections */
   inverted?: boolean;
+  /** Ghost-numeral colour, for grounds that aren't ink — e.g. the burgundy
+      Experience section, where the default cold grey reads as a foreign blob */
+  ghostClass?: string;
 }
 
 export function SectionHeading({
@@ -79,6 +82,7 @@ export function SectionHeading({
   aside,
   description,
   inverted = false,
+  ghostClass,
 }: SectionHeadingProps) {
   const num = String(index).padStart(2, "0");
 
@@ -100,7 +104,7 @@ export function SectionHeading({
         aria-hidden="true"
         className={cn(
           "numeral-ghost absolute -top-10 -left-6 z-0 select-none sm:-top-16 sm:-left-10",
-          inverted ? "text-ink-700" : "text-paper-400",
+          ghostClass ?? (inverted ? "text-ink-700" : "text-paper-400"),
         )}
       >
         {num}
@@ -115,10 +119,12 @@ export function SectionHeading({
               measured 3.40:1 there and ink-500 3.88:1 — both failed AA. */}
           <p
             className={cn(
-              "t-label",
+              "t-label flex items-center gap-2.5",
               inverted ? "text-jade-300" : "text-jade-800",
             )}
           >
+            {/* The one ornament, set into the masthead rather than floating
+                under the title, where it read as a stray speck. */}
             {num} / {label}
           </p>
           {aside && (

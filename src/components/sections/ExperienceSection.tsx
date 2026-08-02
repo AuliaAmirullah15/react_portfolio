@@ -32,10 +32,10 @@ export default function ExperienceSection() {
             <div className="ed-grid">
               {/* Dates + company in the gutter */}
               <div>
-                <p className="t-label text-jade-700">
+                <p className="t-label-lg text-brass-700">
                   {exp.startDate} &mdash; {exp.endDate ?? "Present"}
                 </p>
-                <p className="t-label-lg mt-3 text-ink-800">{exp.company}</p>
+                <p className="t-label-lg mt-3 text-jade-800">{exp.company}</p>
               </div>
 
               <div>
@@ -53,7 +53,10 @@ export default function ExperienceSection() {
                       key={achievement}
                       className="grid grid-cols-[1.75rem_1fr] items-baseline text-sm leading-relaxed text-ink-700"
                     >
-                      <span aria-hidden="true" className="t-label text-ink-400">
+                      <span
+                        aria-hidden="true"
+                        className="t-label text-bord-400"
+                      >
                         {String(n + 1).padStart(2, "0")}
                       </span>
                       <span className="max-w-xl">{achievement}</span>
@@ -62,7 +65,7 @@ export default function ExperienceSection() {
                 </ul>
 
                 <ul
-                  className="t-meta t-meta-list mt-8 text-ink-500"
+                  className="t-meta t-meta-list mt-8 text-ink-600"
                   aria-label="Technologies used"
                 >
                   {exp.techStack.map((tech) => (

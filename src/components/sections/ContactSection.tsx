@@ -137,7 +137,7 @@ export default function ContactSection() {
               </p>
               <button
                 onClick={() => setStatus("idle")}
-                className="t-label mt-8 border-b border-jade-600 pb-1 text-jade-700 transition-colors hover:text-ink-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2"
+                className="t-label mt-8 pb-1 text-jade-700 transition-colors hover:text-ink-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2"
               >
                 Send another
               </button>

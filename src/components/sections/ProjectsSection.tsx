@@ -35,11 +35,11 @@ export default function ProjectsSection() {
               initial={{ opacity: 0, y: 18 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.45, delay: i * 0.08 }}
-              className="ed-row group grid gap-8 py-12 lg:grid-cols-12 lg:gap-10"
+              className="ed-divide ed-row group grid gap-8 lg:grid-cols-12 lg:gap-10"
             >
               {/* Index + category, hanging in the margin */}
               <div className="lg:col-span-2">
-                <p className="t-label text-jade-700">
+                <p className="t-label-lg text-brass-700">
                   {String(i + 1).padStart(2, "0")}
                 </p>
                 <p className="t-label mt-2 text-ink-400">{project.category}</p>
@@ -99,7 +99,7 @@ export default function ProjectsSection() {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="t-label inline-flex items-center gap-2 border-b border-ink-400 pb-1 text-ink-700 transition-colors hover:border-jade-600 hover:text-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2"
+                        className="t-label inline-flex items-center gap-2 pb-1 text-ink-700 transition-colors hover:text-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2"
                       >
                         <GitHubIcon size={12} aria-hidden="true" />
                         Source
@@ -111,7 +111,7 @@ export default function ProjectsSection() {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="t-label inline-flex items-center gap-2 border-b border-ink-400 pb-1 text-ink-700 transition-colors hover:border-jade-600 hover:text-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2"
+                        className="t-label inline-flex items-center gap-2 pb-1 text-ink-700 transition-colors hover:text-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2"
                       >
                         <ExternalLink size={12} aria-hidden="true" />
                         Live
