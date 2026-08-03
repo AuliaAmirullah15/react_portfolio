@@ -48,7 +48,7 @@ export default function AboutSection() {
           <a
             href="/cv/CV_Aulia_Zulkarneidi.pdf"
             download
-            className="t-label-lg group inline-flex items-center gap-2.5 pb-1.5 text-ink-800 transition-colors hover:border-jade-600 hover:text-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2"
+            className="t-label-lg group inline-flex items-center gap-2.5 pb-1.5 text-ink-800 transition-colors hover:border-navy-600 hover:text-navy-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2"
           >
             <Download size={15} aria-hidden="true" />
             Download CV
@@ -65,11 +65,11 @@ export default function AboutSection() {
           <div className="relative max-w-2xl pl-12 sm:pl-16">
             <span
               aria-hidden="true"
-              className="absolute top-0 left-0 font-serif text-6xl leading-none text-jade-700 select-none sm:text-7xl"
+              className="absolute top-0 left-0 font-serif text-6xl leading-none text-navy-700 select-none sm:text-7xl"
             >
               &ldquo;
             </span>
-            <p className="drop-cap font-serif text-2xl leading-snug text-ink-900 [&::first-letter]:text-jade-700 sm:text-3xl">
+            <p className="drop-cap font-serif text-2xl leading-snug text-ink-900 [&::first-letter]:text-navy-700 sm:text-3xl">
               I&apos;m a Senior Software Developer with 7+ years&apos;
               experience building event-driven, production systems across retail
               and enterprise settings.
@@ -90,10 +90,10 @@ export default function AboutSection() {
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="deco-frame bg-jade-700 px-5 py-7 text-center [--b:var(--color-brass-300)]"
+                className="deco-frame bg-navy-800 px-5 py-7 text-center [--b:var(--color-sky-300)]"
               >
-                <dd className="t-figure text-brass-200">{stat.value}</dd>
-                <dt className="t-label mt-3 text-brass-300">{stat.label}</dt>
+                <dd className="t-figure text-sky-200">{stat.value}</dd>
+                <dt className="t-label mt-3 text-sky-300">{stat.label}</dt>
               </div>
             ))}
           </dl>
@@ -107,7 +107,7 @@ export default function AboutSection() {
               >
                 <span
                   aria-hidden="true"
-                  className="flex h-10 w-10 shrink-0 items-center justify-center border border-brass-400 bg-jade-700 text-brass-300"
+                  className="flex h-10 w-10 shrink-0 items-center justify-center border border-sky-300 bg-navy-800 text-sky-300"
                 >
                   <item.icon size={18} strokeWidth={1.75} />
                 </span>

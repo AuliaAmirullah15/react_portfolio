@@ -32,10 +32,10 @@ export default function ExperienceSection() {
             <div className="ed-grid">
               {/* Dates + company in the gutter */}
               <div>
-                <p className="t-label-lg text-brass-700">
+                <p className="t-label-lg text-navy-700">
                   {exp.startDate} &mdash; {exp.endDate ?? "Present"}
                 </p>
-                <p className="t-label-lg mt-3 text-jade-800">{exp.company}</p>
+                <p className="t-label-lg mt-3 text-navy-800">{exp.company}</p>
               </div>
 
               <div>
@@ -55,7 +55,7 @@ export default function ExperienceSection() {
                     >
                       <span
                         aria-hidden="true"
-                        className="t-label text-brass-600"
+                        className="t-label text-navy-600"
                       >
                         {String(n + 1).padStart(2, "0")}
                       </span>

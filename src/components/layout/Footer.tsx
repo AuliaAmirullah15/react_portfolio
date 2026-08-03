@@ -17,7 +17,7 @@ export default function Footer() {
         {/* The name set large one last time — a colophon, not a small print row */}
         <p className="t-title text-paper-100">
           {SITE_CONFIG.name}
-          <span className="text-jade-500" aria-hidden="true">
+          <span className="text-navy-500" aria-hidden="true">
             .
           </span>
         </p>
@@ -37,7 +37,7 @@ export default function Footer() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-2 text-sm text-ink-200 transition-colors hover:text-jade-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-200 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+                    className="group inline-flex items-center gap-2 text-sm text-ink-200 transition-colors hover:text-sky-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-200 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
                   >
                     <Icon size={13} aria-hidden="true" />
                     <span className="underline-offset-4 group-hover:underline">

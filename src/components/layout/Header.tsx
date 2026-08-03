@@ -74,11 +74,11 @@ export default function Header() {
           {/* Wordmark — full name in mono caps, read as a masthead slug */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="t-label-lg text-ink-950 transition-colors hover:text-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2"
+            className="t-label-lg text-ink-950 transition-colors hover:text-navy-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2"
             aria-label="Scroll to top"
           >
             {SITE_CONFIG.name}
-            {/* <span className="text-jade-600" aria-hidden="true">
+            {/* <span className="text-navy-600" aria-hidden="true">
               {" "}
               &mdash;
             </span> */}
@@ -94,9 +94,9 @@ export default function Header() {
                 key={link.href}
                 onClick={() => scrollTo(link.href)}
                 className={cn(
-                  "t-label group flex items-center gap-1.5 px-2.5 py-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2",
+                  "t-label group flex items-center gap-1.5 px-2.5 py-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2",
                   activeSection === link.href
-                    ? "text-jade-700"
+                    ? "text-navy-700"
                     : "text-ink-500 hover:text-ink-950",
                 )}
                 aria-current={activeSection === link.href ? "true" : undefined}
@@ -107,7 +107,7 @@ export default function Header() {
                   className={cn(
                     "tabular-nums transition-colors",
                     activeSection === link.href
-                      ? "text-jade-500"
+                      ? "text-navy-500"
                       : "text-ink-300",
                   )}
                 >
@@ -122,14 +122,14 @@ export default function Header() {
           <div className="flex items-center gap-3">
             <button
               onClick={() => scrollTo("#contact")}
-              className="t-label hidden items-center bg-ink-950 px-5 py-2.5 text-paper-50 transition-colors hover:bg-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2 md:inline-flex"
+              className="t-label hidden items-center bg-ink-950 px-5 py-2.5 text-paper-50 transition-colors hover:bg-navy-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2 md:inline-flex"
             >
               Get in touch
             </button>
 
             <button
               onClick={() => setMobileOpen((v) => !v)}
-              className="p-2 text-ink-600 transition-colors hover:text-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 md:hidden"
+              className="p-2 text-ink-600 transition-colors hover:text-navy-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 md:hidden"
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav"
               aria-label={
@@ -173,9 +173,9 @@ export default function Header() {
                   key={link.href}
                   onClick={() => scrollTo(link.href)}
                   className={cn(
-                    "t-label ed-row flex items-center gap-3 py-4 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700",
+                    "t-label ed-row flex items-center gap-3 py-4 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700",
                     activeSection === link.href
-                      ? "text-jade-700"
+                      ? "text-navy-700"
                       : "text-ink-600 hover:text-ink-950",
                   )}
                 >

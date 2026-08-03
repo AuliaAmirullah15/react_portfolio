@@ -68,7 +68,7 @@ export default function ContactSection() {
       inputBase,
       hasError
         ? "border-red-600 focus:border-red-700"
-        : "border-ink-400 hover:border-ink-600 focus:border-jade-600",
+        : "border-ink-400 hover:border-ink-600 focus:border-navy-600",
     );
 
   return (
@@ -87,7 +87,7 @@ export default function ContactSection() {
             <p className="t-label text-ink-400">Email</p>
             <a
               href={`mailto:${SITE_CONFIG.email}`}
-              className="mt-2 block text-sm break-all text-jade-700 underline decoration-jade-400 underline-offset-4 transition-colors hover:text-ink-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2"
+              className="mt-2 block text-sm break-all text-navy-700 underline decoration-navy-400 underline-offset-4 transition-colors hover:text-ink-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2"
             >
               {SITE_CONFIG.email}
             </a>
@@ -102,7 +102,7 @@ export default function ContactSection() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-2.5 text-sm text-ink-600 transition-colors hover:text-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2"
+                    className="group inline-flex items-center gap-2.5 text-sm text-ink-600 transition-colors hover:text-navy-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2"
                   >
                     <Icon size={14} aria-hidden="true" />
                     <span className="underline-offset-4 group-hover:underline">
@@ -121,12 +121,12 @@ export default function ContactSection() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="border-t-2 border-jade-600 py-12"
+              className="border-t-2 border-navy-600 py-12"
               role="status"
             >
               <CheckCircle2
                 size={32}
-                className="text-jade-600"
+                className="text-navy-600"
                 aria-hidden="true"
               />
               <h3 className="t-title mt-6 text-3xl text-ink-950">
@@ -137,7 +137,7 @@ export default function ContactSection() {
               </p>
               <button
                 onClick={() => setStatus("idle")}
-                className="t-label mt-8 pb-1 text-jade-700 transition-colors hover:text-ink-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2"
+                className="t-label mt-8 pb-1 text-navy-700 transition-colors hover:text-ink-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2"
               >
                 Send another
               </button>
@@ -266,7 +266,7 @@ export default function ContactSection() {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="t-label-lg group inline-flex items-center gap-3 bg-ink-950 px-8 py-4 text-paper-50 transition-colors hover:bg-jade-700 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:bg-ink-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2"
+                className="t-label-lg group inline-flex items-center gap-3 bg-ink-950 px-8 py-4 text-paper-50 transition-colors hover:bg-navy-800 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:bg-ink-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2"
               >
                 {status === "loading" ? (
                   <>

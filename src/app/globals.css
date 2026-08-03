@@ -3,42 +3,37 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    EDITORIAL DECO
    ───────────────────────────────────────────────────────────────────────────
-   The previous theme (warm bone ground + system serif + brass hairlines +
-   evenly-spaced centred cards) read as a generic "tasteful" template. The fix
-   is not another palette — it is a different formal vocabulary:
+   Navy, white and near-black, with light blue for fills. The formal
+   vocabulary is what carries the character:
 
      · asymmetry            nothing is centred; content sits off-axis
      · extreme scale        display type ~10x the label size, not 2x
      · rules, not boxes     hairline rules and whitespace carry structure
      · numerals as form     oversized ghost numerals as page furniture
-     · one saturated accent jade, not a muted metallic
+     · one accent            navy, used for text, rules and fills
 
-   COLOUR CONTRACT (all 38 real pairings verified; see notes per ramp)
+   COLOUR CONTRACT (all 32 real pairings verified)
 
-     ON PAPER (paper-50 / paper-100 / paper-200)
-       ink-950   display headings              16.3:1  AAA
-       ink-800   body                          13.7:1  AAA
-       ink-600   secondary                      8.4:1  AAA
-       ink-500   muted / marginalia             5.6:1  AA
-       ink-400   NON-TEXT ONLY (borders)        3.3:1  — never body text
-       jade-700  links, accents                 7.3:1  AAA
-       jade-600  accents on raised surfaces     5.7:1  AA
+     ON PAPER (paper-50 white / paper-100 ground / paper-200 tint band)
+       ink-950   display headings              17.60:1  AAA
+       ink-800   body                          14.47:1  AAA
+       ink-600   secondary                      8.18:1  AAA
+       ink-500   muted / labels                 5.14:1  AA
+       ink-400   NON-TEXT ONLY (input borders)   3.36:1
+       navy-700  links, accent text             9.55:1  AAA
+       navy-600  rules, corner marks (graphic)  6.94:1
 
-     ON INK (ink-950 / ink-900)
-       paper-100 display headings              16.3:1  AAA
-       ink-200   body                          11.9:1  AAA
-       ink-300   marginalia                     8.2:1  AA
-       jade-300  accents                       10.2:1  AAA
-       jade-400  accents, deeper                6.6:1  AA
+     ON A NAVY FILL (navy-800 boxes)
+       paper-50  white text                    13.03:1  AAA
+       sky-200   figures                        9.86:1  AAA
+       sky-300   labels, box border             7.63:1  AAA
 
    Three rules that are easy to break:
      1. ink-400 is for borders only. Body text needs ink-500 or darker.
-     2. Ghost numerals are decorative (paper-400 on paper / ink-700 on ink).
-        They must never be the only carrier of information — the number is
-        always repeated in the section label.
+     2. sky-* is for FILLS and text-on-navy. sky-300 as a rule on paper-100 is
+        1.61:1 and invisible — use navy-600 for anything line-shaped.
      3. Anything layered OVER a ghost numeral must be checked against the
-        numeral, not the page ground. jade-800 and ink-800 clear it; jade-700
-        (3.40:1) and ink-500 (3.88:1) do not.
+        numeral (paper-400), not the page ground.
 
    If you retint anything, check perceptual distance (ΔE) as well as contrast.
    Passing WCAG says nothing about whether a change is visible: an earlier
@@ -47,55 +42,39 @@
 
 @theme {
   /* ── Ink: cool near-blacks. Blue-grey, not warm brown. ── */
-  --color-ink-950: #101317;
-  --color-ink-900: #171b21;
-  --color-ink-800: #1e242b;
-  --color-ink-700: #2b333c;
-  --color-ink-600: #3c4650;
-  --color-ink-500: #4e5a65;
-  --color-ink-400: #78848f;
-  --color-ink-300: #a3adb7;
-  --color-ink-200: #c8d0d7;
+  --color-ink-950: #0b1220;
+  --color-ink-900: #111a2b;
+  --color-ink-800: #1a2537;
+  --color-ink-700: #26344a;
+  --color-ink-600: #3a4c68;
+  --color-ink-500: #526b8c;
+  --color-ink-400: #78899f;
+  --color-ink-300: #aab6c8;
+  --color-ink-200: #ccd5e0;
 
   /* ── Paper: grey-green tinted. Deliberately not cream. ── */
-  --color-paper-50: #f2f4f2;
-  --color-paper-100: #e2e6e3;
-  --color-paper-200: #d1d7d3;
-  --color-paper-300: #bac2bd;
-  --color-paper-400: #9ea8a2;
+  --color-paper-50: #ffffff;
+  --color-paper-100: #f6f8fb;
+  --color-paper-200: #eaeff5;
+  --color-paper-300: #d8e0ea;
+  --color-paper-400: #b9c5d4;
 
-  /* ── Jade: the single accent. Saturated, not metallic. ── */
-  --color-jade-200: #bfe3d6;
-  --color-jade-300: #8eccb8;
-  --color-jade-400: #4fa98d;
-  --color-jade-500: #17795e;
-  --color-jade-600: #0e6b52;
-  --color-jade-700: #0a5942;
-  --color-jade-800: #063e2e;
+  /* ── Navy: the accent, the fills, the dark boxes ──
+     navy-700 for text and links, navy-600 for rules and corner marks,
+     navy-800 for filled boxes. ── */
+  --color-navy-400: #5b8ac9;
+  --color-navy-500: #3f6fb5;
+  --color-navy-600: #2b5596;
+  --color-navy-700: #1f4079;
+  --color-navy-800: #16305c;
+  --color-navy-900: #0f2244;
 
-  /* ── Brass: gold for the "How I work" icon tiles ──
-     The tiles are deep jade on a near-black ground, which means the FILL
-     cannot carry the shape: jade-700 measures only 2.24:1 against ink-950.
-     A gold hairline edge does the work instead (brass-400 vs ground 7.89:1),
-     with a gold glyph inside (brass-300 on jade-700, 5.11:1).
-     terra/ocean kept for accents elsewhere. ── */
-  /* Burgundy — the deep Experience ground, and an accent on light. */
-  --color-bord-200: #e8bdc5;
-  --color-bord-400: #c47b88;
-  --color-bord-600: #8f2740;
-  --color-bord-700: #761f34;
-  --color-bord-800: #591727;
-
-  /* brass-700 is the step for text and outlines on LIGHT grounds. brass-400
-     is 1.87:1 there — an outline in it is invisible — so 400 is for dark
-     grounds only (7.89:1 on ink, 5.64:1 on burgundy). */
-  --color-brass-700: #695115;
-  --color-brass-200: #ecd9a4;
-  --color-brass-300: #dfc98c;
-  --color-brass-400: #c9a44c;
-  --color-brass-600: #7f631c;
-  --color-terra-400: #d98b62;
-  --color-terra-600: #a8461f;
+  /* ── Sky: FILLS, and text on navy. Never a rule on a light ground ──
+     sky-300 on paper-100 measures 1.61:1 and is invisible; the same trap the
+     old metallic accent fell into. Use navy-600 for anything line-shaped. ── */
+  --color-sky-100: #e8f1fc;
+  --color-sky-200: #cfe2f8;
+  --color-sky-300: #a9c9ef;
 
   /* ── Red: errors only. Never decorative. ── */
   --color-red-100: #fbe2de;
@@ -286,16 +265,15 @@ body {
     padding-block: clamp(2rem, 4vw, 3.25rem);
   }
 
-  /* Gold frame with inner corner brackets — the Deco device from the brass
-     theme. brass-600 for the rule (4.50:1 on paper, clears the 3:1 a
-     perceivable boundary needs); brass-400 would be 1.87:1 and invisible on
+  /* Navy frame with inner corner brackets — the Deco device, retinted. navy-600 for the rule (6.94:1 on paper, clears the 3:1 a
+     perceivable boundary needs); sky-300 would be 1.61:1 and invisible on
      a light ground. The brackets are drawn as eight background gradients on
      one pseudo-element, so a frame costs no extra DOM. */
   .deco-frame {
     /* --b drives both the border and the corner brackets, so one element can
-       retint the whole device: e.g. the jade stat boxes set it to brass-300,
-       because brass-600 on jade measures 1.47:1 and vanishes. */
-    --b: var(--color-brass-600);
+       retint the whole device: e.g. the navy stat boxes set it to sky-300,
+       because navy-600 on navy measures 1.4:1 and vanishes. */
+    --b: var(--color-navy-600);
     position: relative;
     border: 1px solid var(--b);
   }
@@ -314,7 +292,7 @@ body {
       linear-gradient(var(--b), var(--b)) 100% 100% / 1px var(--l) no-repeat;
   }
   .on-ink .deco-frame {
-    --b: var(--color-brass-400);
+    --b: var(--color-sky-300);
   }
 
   /* Fine 45-degree hatching for a textured panel. Deliberately NOT the OS
@@ -348,7 +326,7 @@ body {
     padding-top: 0.06em;
   }
 
-  /* A single brass lozenge — the only ornament, used ONCE per section under
+  /* A single navy lozenge — the only ornament, used ONCE per section under
      the masthead, never repeated down a list. Repeating it would just be a
      hairline by another name. */
   .deco-lozenge {
@@ -384,15 +362,15 @@ body {
 /* ═══ FOCUS / SELECTION / SCROLLBAR ════════════════════════════════════════ */
 
 :focus-visible {
-  outline: 2px solid var(--color-jade-700);
+  outline: 2px solid var(--color-navy-700);
   outline-offset: 2px;
 }
 .on-ink :focus-visible {
-  outline-color: var(--color-jade-200);
+  outline-color: var(--color-sky-200);
 }
 
 ::selection {
-  background: var(--color-jade-200);
+  background: var(--color-sky-200);
   color: var(--color-ink-950);
 }
 

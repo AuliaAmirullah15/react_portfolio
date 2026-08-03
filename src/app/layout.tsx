@@ -97,7 +97,7 @@ export default function RootLayout({
         {/* Skip-to-content link for keyboard & screen-reader users */}
         <a
           href="#main-content"
-          className="t-label sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-200 focus:bg-ink-950 focus:px-4 focus:py-3 focus:text-paper-50 focus:shadow-lg focus:ring-2 focus:ring-jade-300"
+          className="t-label sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-200 focus:bg-ink-950 focus:px-4 focus:py-3 focus:text-paper-50 focus:shadow-lg focus:ring-2 focus:ring-sky-200"
         >
           Skip to main content
         </a>

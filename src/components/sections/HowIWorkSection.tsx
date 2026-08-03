@@ -12,10 +12,10 @@ import {
 } from "lucide-react";
 import SectionWrapper, { SectionHeading } from "@/components/ui/SectionWrapper";
 
-// Squared icon tiles: deep jade fill, gold hairline edge, gold glyph.
-// The edge is not decoration — on a near-black ground the jade fill alone is
-// 2.24:1 and the tile would read as a floating icon rather than a tile. The
-// gold edge is 7.89:1 against the ground and carries the shape.
+// Squared icon tiles: navy fill, sky hairline edge, sky glyph.
+// The edge is not decoration — on a near-black ground the navy fill alone is
+// low-contrast and the tile would read as a floating icon rather than a tile.
+// The sky edge carries the shape.
 const principles = [
   {
     icon: GitBranch,
@@ -64,7 +64,7 @@ export default function HowIWorkSection() {
       {/* Sunburst anchored bottom-left, mirroring the hero's right-hand one */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-1/2 -left-1/4 aspect-square w-[90vw] text-jade-300/10"
+        className="pointer-events-none absolute -bottom-1/2 -left-1/4 aspect-square w-[90vw] text-sky-300/10"
         // Centre faded too — see the note in HeroSection.
         style={{
           maskImage:
@@ -94,7 +94,7 @@ export default function HowIWorkSection() {
           >
             <span
               aria-hidden="true"
-              className="flex h-10 w-10 items-center justify-center border border-brass-400 bg-jade-700 text-brass-300"
+              className="flex h-10 w-10 items-center justify-center border border-sky-300 bg-navy-800 text-sky-300"
             >
               <principle.icon size={18} strokeWidth={1.75} />
             </span>

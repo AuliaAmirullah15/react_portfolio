@@ -41,7 +41,7 @@ export default function HeroSection() {
     >
       {/* Ghost monogram — the same device as the section numerals, so it reads
           as part of the system rather than a one-off flourish. paper-300, not
-          paper-400: the surname crosses it, and jade-700 measures 3.40:1 over
+          paper-400: the surname crosses it, and navy-700 measures 3.4:1 over
           400 but 5.70:1 over 300. */}
       <span
         aria-hidden="true"
@@ -64,7 +64,7 @@ export default function HeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4 }}
-              className="t-label text-jade-700"
+              className="t-label text-navy-700"
             >
               00 / Index
             </motion.p>
@@ -82,10 +82,10 @@ export default function HeroSection() {
               {SITE_CONFIG.openToWork && (
                 <div>
                   <dt className="t-label text-ink-600">Status</dt>
-                  <dd className="mt-1 flex items-center gap-2 text-jade-700">
+                  <dd className="mt-1 flex items-center gap-2 text-navy-700">
                     <span
                       aria-hidden="true"
-                      className="h-1.5 w-1.5 rotate-45 bg-jade-600"
+                      className="h-1.5 w-1.5 rotate-45 bg-navy-600"
                     />
                     Open to work
                   </dd>
@@ -105,7 +105,7 @@ export default function HeroSection() {
               className="t-display text-ink-950"
             >
               <span className="block">Aulia</span>
-              <span className="block pl-[8%] text-jade-700">Zulkarneidi</span>
+              <span className="block pl-[8%] text-navy-700">Zulkarneidi</span>
             </motion.h1>
 
             {/* Cycling role, as a mono ticker rather than a soft subtitle */}
@@ -151,7 +151,7 @@ export default function HeroSection() {
             >
               <button
                 onClick={() => scrollTo("projects")}
-                className="t-label-lg group inline-flex items-center gap-3 bg-ink-950 px-7 py-4 text-paper-50 transition-colors hover:bg-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2"
+                className="t-label-lg group inline-flex items-center gap-3 bg-ink-950 px-7 py-4 text-paper-50 transition-colors hover:bg-navy-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2"
               >
                 View Work
                 <span
@@ -163,7 +163,7 @@ export default function HeroSection() {
               </button>
               <button
                 onClick={() => scrollTo("contact")}
-                className="t-label-lg border-b-2 border-jade-600 pb-1 text-ink-800 transition-colors hover:text-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2"
+                className="t-label-lg border-b-2 border-navy-600 pb-1 text-ink-800 transition-colors hover:text-navy-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2"
               >
                 Get in touch
               </button>
@@ -175,7 +175,7 @@ export default function HeroSection() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 text-ink-500 transition-colors hover:text-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700"
+                    className="p-2 text-ink-500 transition-colors hover:text-navy-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700"
                     aria-label={label}
                   >
                     <Icon size={17} aria-hidden="true" />
@@ -193,7 +193,7 @@ export default function HeroSection() {
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 0.5 }}
         onClick={() => scrollTo("about")}
-        className="absolute bottom-8 left-5 flex items-center gap-3 text-ink-500 transition-colors hover:text-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 sm:left-8 lg:left-12"
+        className="absolute bottom-8 left-5 flex items-center gap-3 text-ink-500 transition-colors hover:text-navy-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 sm:left-8 lg:left-12"
         aria-label="Scroll to About section"
       >
         <span className="t-label">Scroll</span>

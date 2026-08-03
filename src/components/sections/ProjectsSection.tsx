@@ -39,7 +39,7 @@ export default function ProjectsSection() {
             >
               {/* Index + category, hanging in the margin */}
               <div className="lg:col-span-2">
-                <p className="t-label-lg text-brass-700">
+                <p className="t-label-lg text-navy-700">
                   {String(i + 1).padStart(2, "0")}
                 </p>
                 <p className="t-label mt-2 text-ink-400">{project.category}</p>
@@ -99,7 +99,7 @@ export default function ProjectsSection() {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="t-label inline-flex items-center gap-2 pb-1 text-ink-700 transition-colors hover:text-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2"
+                        className="t-label inline-flex items-center gap-2 pb-1 text-ink-700 transition-colors hover:text-navy-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2"
                       >
                         <GitHubIcon size={12} aria-hidden="true" />
                         Source
@@ -111,7 +111,7 @@ export default function ProjectsSection() {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="t-label inline-flex items-center gap-2 pb-1 text-ink-700 transition-colors hover:text-jade-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2"
+                        className="t-label inline-flex items-center gap-2 pb-1 text-ink-700 transition-colors hover:text-navy-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2"
                       >
                         <ExternalLink size={12} aria-hidden="true" />
                         Live
@@ -134,7 +134,7 @@ export default function ProjectsSection() {
           href={SITE_CONFIG.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="t-label-lg group inline-flex items-center gap-3 text-jade-700 transition-colors hover:text-ink-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2"
+          className="t-label-lg group inline-flex items-center gap-3 text-navy-700 transition-colors hover:text-ink-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2"
         >
           All projects on GitHub
           <span

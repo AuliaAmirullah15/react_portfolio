@@ -62,14 +62,14 @@ export default function SkillsSection() {
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => setFilter(key)}
-                  // jade-800 / ink-700 rather than jade-700 / ink-500: on wide
+                  // navy-800 / ink-700 rather than navy-700 / ink-500: on wide
                   // viewports this filter column overlaps the ghost numeral, so
                   // the effective background is paper-400. The lighter pair
                   // measured 3.40:1 and 3.88:1 there.
                   className={cn(
-                    "t-label group flex items-center gap-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jade-700 focus-visible:ring-offset-2",
+                    "t-label group flex items-center gap-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2",
                     isActive
-                      ? "text-jade-800"
+                      ? "text-navy-800"
                       : "text-ink-700 hover:text-ink-950",
                   )}
                 >
@@ -78,7 +78,7 @@ export default function SkillsSection() {
                     className={cn(
                       "h-px transition-all",
                       isActive
-                        ? "w-6 bg-jade-600"
+                        ? "w-6 bg-navy-600"
                         : "w-2.5 bg-ink-400 group-hover:w-4",
                     )}
                   />
@@ -122,7 +122,7 @@ export default function SkillsSection() {
                       className={cn(
                         "h-1.5 w-1.5 rotate-45",
                         n <= LEVEL_RANK[skill.level]
-                          ? "bg-jade-600"
+                          ? "bg-navy-600"
                           : "bg-ink-300",
                       )}
                     />
@@ -144,7 +144,7 @@ export default function SkillsSection() {
                   key={n}
                   className={cn(
                     "h-1.5 w-1.5 rotate-45",
-                    n <= LEVEL_RANK[lvl] ? "bg-jade-600" : "bg-ink-300",
+                    n <= LEVEL_RANK[lvl] ? "bg-navy-600" : "bg-ink-300",
                   )}
                 />
               ))}

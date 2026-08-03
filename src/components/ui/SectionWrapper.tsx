@@ -113,14 +113,14 @@ export function SectionHeading({
       <div className="ed-grid">
         {/* Left gutter: label + aside */}
         <div className="pt-1">
-          {/* jade-800 / ink-800, not the lighter tones: both of these sit on
+          {/* navy-800 / ink-800, not the lighter tones: both of these sit on
               top of the ghost numeral, so their effective background is
-              paper-400 (ink-700 when inverted), not the page ground. jade-700
+              paper-400 (ink-700 when inverted), not the page ground. navy-700
               measured 3.40:1 there and ink-500 3.88:1 — both failed AA. */}
           <p
             className={cn(
               "t-label flex items-center gap-2.5",
-              inverted ? "text-jade-300" : "text-jade-800",
+              inverted ? "text-sky-300" : "text-navy-800",
             )}
           >
             {/* The one ornament, set into the masthead rather than floating
