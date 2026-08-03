@@ -85,15 +85,22 @@ export default function AboutSection() {
             ML-powered recommendation engines to real-time analytics pipelines.
           </p>
 
-          {/* ── Figures in gold frames with inner corner brackets ── */}
-          <dl className="mt-16 grid grid-cols-2 gap-5 sm:grid-cols-4">
+          {/* ── Figures set as type, not as boxes ──
+              No fill, no frame: the figure size and the tracked label carry it.
+              navy-800 on the page ground is 12.25:1; the label at ink-500 is
+              5.14:1. Left-aligned so they sit on the same axis as the copy
+              above them rather than floating in centred cards. */}
+          <dl className="mt-16 grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-4">
             {stats.map((stat) => (
-              <div
-                key={stat.label}
-                className="deco-frame bg-navy-800 px-5 py-7 text-center [--b:var(--color-sky-300)]"
-              >
-                <dd className="t-figure text-sky-200">{stat.value}</dd>
-                <dt className="t-label mt-3 text-sky-300">{stat.label}</dt>
+              // dt before dd in the DOM, flipped visually with flex-col-reverse.
+              // A description list pairs term -> description, so having the <dd>
+              // first read as "7+ : Years" — the value announced as the term.
+              // This way a screen reader gets "Years: 7+" while the figure still
+              // sits on top. Nothing here is focusable, so the reversed visual
+              // order cannot desync from focus order.
+              <div key={stat.label} className="flex flex-col-reverse">
+                <dt className="t-label mt-4 text-ink-500">{stat.label}</dt>
+                <dd className="t-figure text-navy-800">{stat.value}</dd>
               </div>
             ))}
           </dl>
