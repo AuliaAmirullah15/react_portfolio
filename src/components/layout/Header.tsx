@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 import { NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
@@ -64,7 +65,7 @@ export default function Header() {
           interpolated backdrop-filter (which pops) and border-width (0 -> 1px). */}
       <div
         className={cn(
-          "absolute inset-x-0 top-0 h-14 border-b border-ink-950 bg-paper-100/95 backdrop-blur-sm transition-opacity duration-300 ease-out",
+          "absolute inset-x-0 top-0 h-14 border-b border-ink-400 bg-paper-100/95 backdrop-blur-sm transition-opacity duration-300 ease-out",
           scrolled ? "opacity-100" : "opacity-0",
         )}
         aria-hidden="true"
@@ -119,10 +120,11 @@ export default function Header() {
           </nav>
 
           {/* Desktop CTA + mobile toggle */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1 sm:gap-2">
+            <ThemeToggle />
             <button
               onClick={() => scrollTo("#contact")}
-              className="t-label hidden items-center bg-ink-950 px-5 py-2.5 text-paper-50 transition-colors hover:bg-navy-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2 md:inline-flex"
+              className="t-label hidden items-center bg-ink-950 px-5 py-2.5 text-paper-50 transition-colors hover:bg-navy-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2 md:inline-flex"
             >
               Get in touch
             </button>
@@ -165,7 +167,7 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
-            className="border-b border-ink-950 bg-paper-50 shadow-lg md:hidden"
+            className="border-b border-ink-400 bg-paper-50 shadow-lg md:hidden"
           >
             <div className="flex flex-col px-5 py-2 sm:px-8">
               {NAV_LINKS.map((link, i) => (

@@ -266,7 +266,7 @@ export default function ContactSection() {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="t-label-lg group inline-flex items-center gap-3 bg-ink-950 px-8 py-4 text-paper-50 transition-colors hover:bg-navy-800 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:bg-ink-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2"
+                className="t-label-lg group inline-flex items-center gap-3 bg-ink-950 px-8 py-4 text-paper-50 transition-colors hover:bg-navy-700 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:bg-ink-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2"
               >
                 {status === "loading" ? (
                   <>

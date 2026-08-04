@@ -60,7 +60,7 @@ export default function HowIWorkSection() {
   const inView = useInView(listRef, { once: true, margin: "-80px" });
 
   return (
-    <SectionWrapper id="how-i-work" className="on-ink bg-ink-950">
+    <SectionWrapper id="how-i-work" className="on-ink bg-band">
       {/* Sunburst anchored bottom-left, mirroring the hero's right-hand one */}
       <div
         aria-hidden="true"
@@ -94,15 +94,15 @@ export default function HowIWorkSection() {
           >
             <span
               aria-hidden="true"
-              className="flex h-10 w-10 items-center justify-center border border-sky-300 bg-navy-800 text-sky-300"
+              className="flex h-10 w-10 items-center justify-center border border-band-accent bg-band-tile text-band-accent"
             >
               <principle.icon size={18} strokeWidth={1.75} />
             </span>
             <div>
-              <h3 className="t-sub text-xl text-paper-100">
+              <h3 className="t-sub text-xl text-band-strong">
                 {principle.title}
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-ink-200">
+              <p className="mt-3 text-sm leading-relaxed text-band-body">
                 {principle.description}
               </p>
             </div>

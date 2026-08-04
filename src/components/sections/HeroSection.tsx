@@ -151,7 +151,7 @@ export default function HeroSection() {
             >
               <button
                 onClick={() => scrollTo("projects")}
-                className="t-label-lg group inline-flex items-center gap-3 bg-ink-950 px-7 py-4 text-paper-50 transition-colors hover:bg-navy-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2"
+                className="t-label-lg group inline-flex items-center gap-3 bg-ink-950 px-7 py-4 text-paper-50 transition-colors hover:bg-navy-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2"
               >
                 View Work
                 <span

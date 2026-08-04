@@ -82,6 +82,17 @@ export default function RootLayout({
             }
           </style>
         </noscript>
+        {/* Applies the stored theme BEFORE first paint. Without this, a dark
+            visitor gets a white flash while React hydrates. Kept tiny and
+            wrapped in try/catch because localStorage throws in Safari private
+            mode, and a theme preference must never break the page. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var t=localStorage.getItem('theme');" +
+              "if(t==='dark'||t==='light')document.documentElement.dataset.theme=t;}catch(e){}",
+          }}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html:

@@ -104,7 +104,7 @@ export function SectionHeading({
         aria-hidden="true"
         className={cn(
           "numeral-ghost absolute -top-10 -left-6 z-0 select-none sm:-top-16 sm:-left-10",
-          ghostClass ?? (inverted ? "text-ink-700" : "text-paper-400"),
+          ghostClass ?? (inverted ? "text-band-line" : "text-paper-400"),
         )}
       >
         {num}
@@ -120,7 +120,7 @@ export function SectionHeading({
           <p
             className={cn(
               "t-label flex items-center gap-2.5",
-              inverted ? "text-sky-300" : "text-navy-800",
+              inverted ? "text-band-accent" : "text-navy-800",
             )}
           >
             {/* The one ornament, set into the masthead rather than floating
@@ -131,7 +131,7 @@ export function SectionHeading({
             <p
               className={cn(
                 "mt-4 max-w-52 text-sm leading-relaxed",
-                inverted ? "text-ink-200" : "text-ink-800",
+                inverted ? "text-band-body" : "text-ink-800",
               )}
             >
               {aside}
@@ -144,7 +144,7 @@ export function SectionHeading({
           <h2
             className={cn(
               "t-title",
-              inverted ? "text-paper-100" : "text-ink-950",
+              inverted ? "text-band-strong" : "text-ink-950",
             )}
           >
             {title}
@@ -153,7 +153,7 @@ export function SectionHeading({
             <p
               className={cn(
                 "mt-6 max-w-2xl text-lg leading-relaxed",
-                inverted ? "text-ink-200" : "text-ink-600",
+                inverted ? "text-band-body" : "text-ink-600",
               )}
             >
               {description}
