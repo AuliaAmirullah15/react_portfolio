@@ -20,9 +20,9 @@ export default function ProjectsSection() {
     <SectionWrapper id="projects">
       <SectionHeading
         index={3}
-        label="Work"
+        label="Projects"
         title="Selected projects."
-        aside={`${featured.length} of ${projects.length} shown`}
+        aside={`${featured.length} projects. Each one has a full write-up.`}
       />
 
       {/* Projects as numbered editorial entries. The image alternates side on

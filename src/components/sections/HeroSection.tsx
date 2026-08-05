@@ -4,7 +4,12 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowDown, Globe } from "lucide-react";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/SocialIcons";
+import { projects } from "@/data/projects";
 import { SITE_CONFIG } from "@/lib/constants";
+
+// Derived, not hard-coded, so the promise on the button cannot drift from the
+// number of entries actually rendered further down the page.
+const projectCount = projects.filter((p) => p.featured).length;
 
 const roles = [
   "Senior Software Developer",
@@ -142,7 +147,14 @@ export default function HeroSection() {
             </motion.p>
 
             {/* CTAs — a solid ink block and a bare underlined link, not two
-                matching buttons. */}
+                matching buttons.
+
+                The label carries the count and the same word the nav and the
+                section heading use. It previously read "View Work" while the
+                nav said "Projects" and the heading said "Work": three names for
+                one destination, which is what made the list hard to find. The
+                number is the other half of it — "View 8 projects" promises a
+                list, where a bare verb promises nothing in particular. */}
             <motion.div
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
@@ -151,9 +163,9 @@ export default function HeroSection() {
             >
               <button
                 onClick={() => scrollTo("projects")}
-                className="t-label-lg group inline-flex items-center gap-3 bg-ink-950 px-7 py-4 text-paper-50 transition-colors hover:bg-navy-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2"
+                className="t-label-lg group inline-flex items-center gap-3 bg-ink-950 px-8 py-4.5 text-paper-50 transition-colors hover:bg-navy-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2"
               >
-                View Work
+                View {projectCount} projects
                 <span
                   aria-hidden="true"
                   className="transition-transform group-hover:translate-x-1"
@@ -167,21 +179,31 @@ export default function HeroSection() {
               >
                 Get in touch
               </button>
+            </motion.div>
 
-              <div className="flex items-center gap-1">
-                {socials.map(({ icon: Icon, label, href }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 text-ink-500 transition-colors hover:text-navy-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700"
-                    aria-label={label}
-                  >
-                    <Icon size={17} aria-hidden="true" />
-                  </a>
-                ))}
-              </div>
+            {/* Socials on their own row. Sharing a row with the CTAs put five
+                competing targets side by side, which cost the primary action
+                the isolation that was doing most of the work of marking it as
+                primary. -ml-2 cancels the icons' own padding so the row still
+                starts on the text column's left edge. */}
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="mt-10 -ml-2 flex items-center gap-1"
+            >
+              {socials.map(({ icon: Icon, label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 text-ink-500 transition-colors hover:text-navy-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700"
+                  aria-label={label}
+                >
+                  <Icon size={17} aria-hidden="true" />
+                </a>
+              ))}
             </motion.div>
           </div>
         </div>
