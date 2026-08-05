@@ -100,7 +100,7 @@ export default function AboutSection() {
               // order cannot desync from focus order.
               <div key={stat.label} className="flex flex-col-reverse">
                 <dt className="t-label mt-4 text-ink-500">{stat.label}</dt>
-                <dd className="t-figure text-navy-800">{stat.value}</dd>
+                <dd className="t-figure text-navy-700">{stat.value}</dd>
               </div>
             ))}
           </dl>

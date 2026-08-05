@@ -120,7 +120,7 @@ export function SectionHeading({
           <p
             className={cn(
               "t-label flex items-center gap-2.5",
-              inverted ? "text-band-accent" : "text-navy-800",
+              inverted ? "text-band-accent" : "text-navy-700",
             )}
           >
             {/* The one ornament, set into the masthead rather than floating

@@ -2,8 +2,9 @@
 
 import { useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, useInView } from "framer-motion";
-import { ExternalLink, ImageOff } from "lucide-react";
+import { ArrowRight, ExternalLink, ImageOff } from "lucide-react";
 import { GitHubIcon } from "@/components/ui/SocialIcons";
 import SectionWrapper, { SectionHeading } from "@/components/ui/SectionWrapper";
 import { projects } from "@/data/projects";
@@ -75,7 +76,18 @@ export default function ProjectsSection() {
                   imageFirst ? "lg:order-2" : "lg:order-1",
                 )}
               >
-                <h3 className="t-sub text-2xl text-ink-950">{project.title}</h3>
+                <h3 className="t-sub text-2xl text-ink-950">
+                  {project.caseStudy ? (
+                    <Link
+                      href={`/projects/${project.id}`}
+                      className="transition-colors hover:text-navy-700 focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2 focus-visible:outline-none"
+                    >
+                      {project.title}
+                    </Link>
+                  ) : (
+                    project.title
+                  )}
+                </h3>
                 <p className="mt-3 text-sm leading-relaxed text-ink-600">
                   {project.description}
                 </p>
@@ -92,8 +104,27 @@ export default function ProjectsSection() {
                   ))}
                 </ul>
 
-                {(project.githubUrl || project.liveUrl) && (
-                  <div className="mt-6 flex items-center gap-6">
+                {(project.caseStudy ||
+                  project.githubUrl ||
+                  project.liveUrl) && (
+                  <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+                    {/* First, and styled as the accent: the write-up is the
+                        thing worth reading, and it is the only destination here
+                        that does not leave the site. */}
+                    {project.caseStudy && (
+                      <Link
+                        href={`/projects/${project.id}`}
+                        className="t-label group/cs inline-flex items-center gap-2 pb-1 text-navy-700 transition-colors hover:text-ink-950 focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2 focus-visible:outline-none"
+                      >
+                        Case study
+                        <span className="sr-only"> for {project.title}</span>
+                        <ArrowRight
+                          size={12}
+                          aria-hidden="true"
+                          className="transition-transform group-hover/cs:translate-x-1"
+                        />
+                      </Link>
+                    )}
                     {project.githubUrl && (
                       <a
                         href={project.githubUrl}

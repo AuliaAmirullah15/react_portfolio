@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "@/components/ui/ThemeToggle";
@@ -11,6 +13,11 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  // The nav points at sections of the home page. On a case-study route those
+  // ids do not exist, so the links have to navigate home first rather than
+  // silently doing nothing — which is exactly what getElementById() gave us.
+  const pathname = usePathname();
+  const onHome = pathname === "/";
 
   // Scroll-triggered background
   useEffect(() => {
@@ -29,8 +36,11 @@ export default function Header() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // Scroll-spy: highlight the nav link for the section currently in view
+  // Scroll-spy: highlight the nav link for the section currently in view.
+  // Off-home there is nothing to spy on — the case-study sections have their own
+  // ids, and observing them would light up an unrelated nav item.
   useEffect(() => {
+    if (!onHome) return;
     const sectionIds = NAV_LINKS.map((l) => l.href.slice(1));
     const observer = new IntersectionObserver(
       (entries) => {
@@ -49,10 +59,18 @@ export default function Header() {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [onHome]);
 
-  const scrollTo = (href: string) => {
+  // Real anchors, not buttons: middle-click and "open in new tab" work, the
+  // target is visible in the status bar, and the link still navigates if the
+  // JavaScript never runs. On the home page we intercept it for a smooth scroll;
+  // everywhere else the href does the work.
+  const hrefFor = (href: string) => (onHome ? href : `/${href}`);
+
+  const onNavClick = (e: React.MouseEvent, href: string) => {
     setMobileOpen(false);
+    if (!onHome) return;
+    e.preventDefault();
     document
       .getElementById(href.slice(1))
       ?.scrollIntoView({ behavior: "smooth" });
@@ -73,17 +91,18 @@ export default function Header() {
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8 lg:px-12">
         <div className="flex h-14 items-center justify-between">
           {/* Wordmark — full name in mono caps, read as a masthead slug */}
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          <Link
+            href="/"
+            onClick={(e) => {
+              if (!onHome) return;
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
             className="t-label-lg text-ink-950 transition-colors hover:text-navy-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2"
-            aria-label="Scroll to top"
+            aria-label={onHome ? "Scroll to top" : "Back to home page"}
           >
             {SITE_CONFIG.name}
-            {/* <span className="text-navy-600" aria-hidden="true">
-              {" "}
-              &mdash;
-            </span> */}
-          </button>
+          </Link>
 
           {/* Desktop nav */}
           <nav
@@ -91,9 +110,10 @@ export default function Header() {
             className="hidden md:flex items-center gap-1"
           >
             {NAV_LINKS.map((link, i) => (
-              <button
+              <a
                 key={link.href}
-                onClick={() => scrollTo(link.href)}
+                href={hrefFor(link.href)}
+                onClick={(e) => onNavClick(e, link.href)}
                 className={cn(
                   "t-label group flex items-center gap-1.5 px-2.5 py-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2",
                   activeSection === link.href
@@ -115,19 +135,20 @@ export default function Header() {
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 {link.label}
-              </button>
+              </a>
             ))}
           </nav>
 
           {/* Desktop CTA + mobile toggle */}
           <div className="flex items-center gap-1 sm:gap-2">
             <ThemeToggle />
-            <button
-              onClick={() => scrollTo("#contact")}
+            <a
+              href={hrefFor("#contact")}
+              onClick={(e) => onNavClick(e, "#contact")}
               className="t-label hidden items-center bg-ink-950 px-5 py-2.5 text-paper-50 transition-colors hover:bg-navy-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2 md:inline-flex"
             >
               Get in touch
-            </button>
+            </a>
 
             <button
               onClick={() => setMobileOpen((v) => !v)}
@@ -171,9 +192,10 @@ export default function Header() {
           >
             <div className="flex flex-col px-5 py-2 sm:px-8">
               {NAV_LINKS.map((link, i) => (
-                <button
+                <a
                   key={link.href}
-                  onClick={() => scrollTo(link.href)}
+                  href={hrefFor(link.href)}
+                  onClick={(e) => onNavClick(e, link.href)}
                   className={cn(
                     "t-label ed-row flex items-center gap-3 py-4 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700",
                     activeSection === link.href
@@ -188,7 +210,7 @@ export default function Header() {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   {link.label}
-                </button>
+                </a>
               ))}
             </div>
           </motion.div>

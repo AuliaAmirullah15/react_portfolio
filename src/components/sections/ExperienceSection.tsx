@@ -33,9 +33,9 @@ export default function ExperienceSection() {
               {/* Dates + company in the gutter */}
               <div>
                 <p className="t-label-lg text-navy-700">
-                  {exp.startDate} &mdash; {exp.endDate ?? "Present"}
+                  {exp.startDate} to {exp.endDate ?? "Present"}
                 </p>
-                <p className="t-label-lg mt-3 text-navy-800">{exp.company}</p>
+                <p className="t-label-lg mt-3 text-navy-700">{exp.company}</p>
               </div>
 
               <div>

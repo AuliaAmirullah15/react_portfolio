@@ -69,7 +69,7 @@ export default function SkillsSection() {
                   className={cn(
                     "t-label group flex items-center gap-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2",
                     isActive
-                      ? "text-navy-800"
+                      ? "text-navy-700"
                       : "text-ink-700 hover:text-ink-950",
                   )}
                 >
